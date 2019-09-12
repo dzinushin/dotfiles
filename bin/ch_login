@@ -1,0 +1,13 @@
+#!/bin/bash
+# login to BOSH credhub on work computer
+# credhub g -n /cf/cf/rabbit_management_password
+
+# $CREDHUB_SERVER
+scp dzinushin@jumpbox:/opt/boshs/prod/creds.yml /tmp/
+CREDHUB_HOST=10.3.10.50:8844
+CREDHUB_LOGIN=credhub_cli_user
+CREDHUB_PWD=`bosh interpolate /tmp/creds.yml --path /credhub_cli_user_password`
+credhub api ${CREDHUB_HOST} --skip-tls-validation
+credhub login --username=${CREDHUB_LOGIN} --password=${CREDHUB_PWD}
+unset CREDHUB_PWD
+rm /tmp/creds.yml
