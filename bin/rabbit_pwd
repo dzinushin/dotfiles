@@ -1,0 +1,3 @@
+#!/bin/bash
+
+credhub g -n /cf/cf/rabbit_management_password
