@@ -3,6 +3,10 @@
 app=$(cf apps | grep -e '\/\d' | cut -d' ' -f1 | fzf +m)
 
 echo "Found $app. Try connect to $app mongodb"
-conn_string=$(cf env $app | grep mongo | grep uri | cut -d':' -f2-100 | tr -s '"' ' ' | tr -d '[:space:]')?replicaSet=rs0
+conn_string=$(cf env $app | grep mongo | grep uri | cut -d':' -f2-100 | tr -s '"' ' ' | tr -d '[:space:]')
+echo $conn_string | grep -qF '?replicaSet=rs0'
+if [ $? -ne 0 ]; then
+  conn_string=${conn_string}'?replicaSet=rs0'
+fi
 echo "${conn_string}"
 docker run -it --net=host mongo mongo ${conn_string}
