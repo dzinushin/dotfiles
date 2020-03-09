@@ -1,0 +1,3 @@
+#!/bin/bash
+
+credhub g -n /cf/cf/uaa_admin_client_secret
