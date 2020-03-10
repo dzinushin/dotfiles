@@ -1,0 +1,14 @@
+#!/bin/bash
+
+app=$(cf apps | grep -e '\/\d' | cut -d' ' -f1 | fzf +m)
+
+host=$(cf env $app | grep host | cut -d':' -f2 | tr -s '",' ' '| tr -d '[:space:]')
+port=$(cf env $app | grep port | cut -d':' -f2 | tr -s '",' ' '| tr -d '[:space:]')
+password=$(cf env $app | grep password | cut -d':' -f2 | tr -s '",' ' '| tr -d '[:space:]')
+
+echo "connecting to host: '${host}' port: '${port}' pwd: '${password}'"
+
+docker run --rm -ti --name rediscli \
+--net host \
+redis \
+redis-cli -h ${host} -p ${port} -a ${password}
