@@ -1,0 +1,4 @@
+#!/bin/bash
+# root
+
+credhub get --name /cf/widgets-mongo/root_password --output-json | jq -r ".value"
