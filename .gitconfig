@@ -1,0 +1,9 @@
+[user]
+	name = Dmitry Zinushin
+	email = zinushin@gmail.com
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	cm = commit -m
