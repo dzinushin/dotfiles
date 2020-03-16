@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # install brew deps
-brew install git mc bat httpie p7zip python
+brew install git mc bat httpie p7zip python jq
 
 brew cask install \
     jetbrains-toolbox \

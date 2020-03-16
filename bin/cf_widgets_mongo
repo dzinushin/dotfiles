@@ -1,0 +1,6 @@
+#!/bin/sh
+password=$(mongo_widgets_root_pwd)
+conn_string="mongodb://root:${password}@10.3.18.76:27017,10.3.18.77:27017,10.3.18.78:27017/admin?replicaSet=rs0"
+
+echo "${conn_string}"
+docker run -it --rm --name mongocli --net=host mongo mongo ${conn_string}
