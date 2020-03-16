@@ -1,4 +1,4 @@
 #!/bin/bash
 # MongoRoot
-
+echo "login: MongoRoot"
 credhub get --name /cf/cf/mongo_root_password --output-json | jq -r ".value"
