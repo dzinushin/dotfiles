@@ -1,3 +1,4 @@
 #!/bin/bash
+# https://rabbitmq.fin.cian.ru/
 
 credhub get --name /cf/cf/rabbit_management_password --output-json | jq -r ".value"
