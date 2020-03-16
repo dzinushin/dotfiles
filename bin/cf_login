@@ -1,0 +1,2 @@
+#!/bin/bash
+cf login -a api.fin.cian.ru --skip-ssl-validation -u dzinushin
