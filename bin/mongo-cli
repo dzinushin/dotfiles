@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "start mongo cli in docker, connect manually"
+docker run -it --rm --name mongocli --net=host mongo mongo --nodb
