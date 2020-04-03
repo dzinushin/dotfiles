@@ -9,7 +9,8 @@ brew install git \
     p7zip \
     jq \
     fzf \
-    nvm
+    nvm \
+    watch
 
 # optionally also can be installed: use-engine zoomus
 brew cask install \
