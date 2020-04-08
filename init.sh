@@ -8,6 +8,7 @@ brew install git \
     httpie \
     p7zip \
     jq \
+    yq \
     fzf \
     nvm \
     watch
