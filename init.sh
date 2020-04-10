@@ -11,7 +11,8 @@ brew install git \
     yq \
     fzf \
     nvm \
-    watch
+    watch \
+    tig
 
 # optionally also can be installed: use-engine zoomus
 brew cask install \
