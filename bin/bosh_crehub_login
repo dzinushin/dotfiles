@@ -1,0 +1,31 @@
+#!/bin/bash
+# login to BOSH credhub on work computer
+# credhub g -n /cf/cf/rabbit_management_password
+
+MODE=$1
+
+if [[ "$MODE" != "stage" && "x$MODE" != "x" ]]; then
+    echo "Only parameter 'stage' allowed"
+    exit -1
+fi 
+
+if [ "$MODE" == "stage" ]; then
+    echo "Login to STAGE credhub"
+    CREDHUB_HOST=10.3.10.51:8844
+else
+    echo "Login to PRODUCTION credhub"
+    CREDHUB_HOST=10.3.10.50:8844
+fi
+
+scp dzinushin@jumpbox:/opt/boshs/${MODE:-prod}/creds.yml /tmp/
+
+CREDHUB_LOGIN=credhub-admin
+#CREDHUB_LOGIN=credhub_cli_user
+CREDHUB_PWD=`bosh interpolate /tmp/creds.yml --path /credhub_admin_client_secret`
+#CREDHUB_PWD=`bosh interpolate /tmp/creds.yml --path /credhub_cli_user_password`
+echo "CREDHUB_PWD: ${CREDHUB_PWD}"
+
+credhub api ${CREDHUB_HOST} --skip-tls-validation
+credhub login --client-name=${CREDHUB_LOGIN} --client-secret=${CREDHUB_PWD}
+#credhub login --username=${CREDHUB_LOGIN} --password=${CREDHUB_PWD}
+rm /tmp/creds.yml
