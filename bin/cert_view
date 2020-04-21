@@ -1,0 +1,6 @@
+#!/bin/bash
+# usage:
+#    cat certfile.pem | cert_view
+
+# openssl x509 -in certfile.pem -noout -text
+openssl x509 -noout -text

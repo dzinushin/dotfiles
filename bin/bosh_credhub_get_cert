@@ -1,0 +1,7 @@
+#!/bin/bash
+
+CERT_NAME="/cf/cf/credhub_ca"
+
+# credhub get --name ${CERT_NAME} --output-json | jq -r ".value"
+# credhub get --name ${CERT_NAME} | yq r - value.ca
+credhub get --name ${CERT_NAME}
