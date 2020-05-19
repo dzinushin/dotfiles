@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# get password for CF credhub credhub_admin_client
+credhub get --name /cf/cf/credhub_admin_client_secret --output-json | jq -r ".value"

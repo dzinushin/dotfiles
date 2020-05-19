@@ -1,13 +1,15 @@
 #!/bin/bash
-# login to BOSH credhub on work computer
-# credhub g -n /cf/cf/rabbit_management_password
+# login to CF credhub on work computer
+# run:
+#    CREDHUB_PWD=xxx cf_credhub_login
 
-# $CREDHUB_SERVER
-scp dzinushin@jumpbox:/opt/boshs/prod/creds.yml /tmp/
-CREDHUB_HOST=10.3.10.50:8844
-CREDHUB_LOGIN=credhub_cli_user
-CREDHUB_PWD=`bosh interpolate /tmp/creds.yml --path /credhub_cli_user_password`
+CREDHUB_HOST=credhub.fin.cian.ru
+CREDHUB_LOGIN=credhub_admin_client
+
+if [[ "x$CREDHUB_PWD" == "x" ]]; then
+    echo "Please set CREDHUB_PWD env var"
+    exit -1
+fi 
+
 credhub api ${CREDHUB_HOST} --skip-tls-validation
-credhub login --username=${CREDHUB_LOGIN} --password=${CREDHUB_PWD}
-unset CREDHUB_PWD
-rm /tmp/creds.yml
+credhub login --client-name=${CREDHUB_LOGIN} --client-secret=${CREDHUB_PWD}
