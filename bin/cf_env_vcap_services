@@ -1,0 +1,6 @@
+#!/bin/bash
+## get JSON with VCAP_SERVICES from cf env command output
+app=$1
+
+vcap_services_json=$(cf env $app | grep -vE "Getting env variables|OK|System-Provided:" | sed '/VCAP_APPLICATION/,$ d' | sed '$ d')
+echo $vcap_services_json

@@ -2,9 +2,7 @@
 
 app=$(cf apps | grep -e '\/\d' | cut -d' ' -f1 | fzf +m)
 
-VCAP_SERVICES=$(cf env $app | grep -v "Getting env variables" | grep -v "OK" | grep -v "System-Provided:" | sed '/VCAP_APPLICATION/,$ d' | sed '$ d')
-# echo $VCAP_SERVICES
-credentials=$(echo $VCAP_SERVICES | jq ".VCAP_SERVICES.redis[0].credentials")
+credentials=$(cf_env_vcap_services $app | jq ".VCAP_SERVICES.redis[0].credentials")
 # echo $credentials
 
 host=$(echo $credentials | jq ".host" | tr -d '"')

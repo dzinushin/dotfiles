@@ -3,7 +3,8 @@
 app=$(cf apps | grep -e '\/\d' | cut -d' ' -f1 | fzf +m)
 
 echo "Found $app. Try connect to $app mongodb"
-conn_string=$(cf env $app | grep mongo | grep uri | cut -d':' -f2-100 | tr -s '"' ' ' | tr -d '[:space:]')
+#conn_string=$(cf env $app | grep mongo | grep uri | cut -d':' -f2-100 | tr -s '"' ' ' | tr -d '[:space:]')
+conn_string=$(cf_env_vcap_services $app | jq ".VCAP_SERVICES.mongodb[0].credentials.uri" | tr -d '"')
 echo $conn_string | grep -qF '?replicaSet=rs0'
 if [ $? -ne 0 ]; then
   conn_string=${conn_string}'?replicaSet=rs0'
