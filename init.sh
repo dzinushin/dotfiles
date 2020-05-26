@@ -22,7 +22,8 @@ brew cask install \
     slack \
     sublime-text \
     robo-3t \
-    tunnelbear
+    tunnelbear \
+    transmission
 
 brew install \
     cloudfoundry/tap/bosh-cli \
