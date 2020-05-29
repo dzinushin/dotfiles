@@ -3,6 +3,7 @@
 # install brew deps
 brew install git \
     python \
+    go \
     mc \
     bat \
     httpie \
