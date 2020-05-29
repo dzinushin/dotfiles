@@ -26,10 +26,11 @@ brew cask install \
     tunnelbear \
     transmission
 
+# https://github.com/mongodb/homebrew-brew
 brew install \
     cloudfoundry/tap/bosh-cli \
     cloudfoundry/tap/credhub-cli \
-    mongodb/brew/mongodb-community-shell # https://github.com/mongodb/homebrew-brew
+    mongodb/brew/mongodb-community
 
 # install fonts
 cd $HOME/Library/fonts && 
