@@ -24,7 +24,8 @@ brew cask install \
     sublime-text \
     robo-3t \
     tunnelbear \
-    transmission
+    transmission \
+    rectangle
 
 # https://github.com/mongodb/homebrew-brew
 brew install \
