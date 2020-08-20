@@ -1,0 +1,4 @@
+# libsecret
+keepassxc-cli clip /Users/dzinushin/Yandex.Disk.localized/private/cian.kdbx wi-fi
+keepassxc-cli ls -R /Users/dzinushin/Yandex.Disk.localized/private/cian.kdbx
+keepassxc-cli db-info /Users/dzinushin/Yandex.Disk.localized/private/MyPasswords.kdbx

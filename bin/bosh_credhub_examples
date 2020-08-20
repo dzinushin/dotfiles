@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+credhub get --name /cf/analytical-services/analytics_minio_secretkey --output-json
+
+credhub set -n "/cf/analytical-services/domrf_minio_secretkey" -w "xxxx" --type=password
+
+credhub get --name /production/keys/banks/vtb/bank-client-secret
+
