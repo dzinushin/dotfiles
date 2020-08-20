@@ -13,7 +13,8 @@ brew install git \
     fzf \
     nvm \
     watch \
-    tig
+    tig \
+    wifi-password
 
 # optionally also can be installed: use-engine zoomus
 brew cask install \
