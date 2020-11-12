@@ -14,6 +14,7 @@ brew install git \
     nvm \
     watch \
     tig \
+    fd \
     wifi-password
 
 # optionally also can be installed: use-engine zoomus
