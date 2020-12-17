@@ -2,6 +2,7 @@
 
 # install brew deps
 brew install git \
+    macvim \
     python \
     go \
     mc \
@@ -36,17 +37,17 @@ brew install \
     mongodb/brew/mongodb-community
 
 # install fonts
-cd $HOME/Library/fonts && 
-curl --silent -O https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf &&  \
-curl --silent -O https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Light.ttf && \
-curl --silent -O https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Medium.ttf && \
-curl --silent -O https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Regular.ttf && \
-curl --silent -O https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Retina.ttf
-cd -
+brew tap homebrew/cask-fonts
+brew cask install font-fira-code
+brew cask install font-monofur-nerd-font
+brew cask install font-jetbrains-mono
 
 # custom scripts
 mkdir -p $HOME/bin
 cp ./bin/* $HOME/bin/
+
+# vim config
+cp .vimrc $HOME/
 
 # VS Code config file
 cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/"

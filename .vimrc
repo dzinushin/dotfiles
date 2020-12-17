@@ -21,6 +21,7 @@ call plug#end()
 " =======================================================================================
 "  => General
 " =======================================================================================
+set nocompatible
 
 " Enable filetype plugins
 filetype plugin on
@@ -42,6 +43,8 @@ set noswapfile
 " Highlight search results
 "set hlsearch
 
+set wildmenu " Display all matching files when we tab complete
+
 " =======================================================================================
 " => Colors and Fonts
 " =======================================================================================
@@ -55,7 +58,10 @@ catch
 endtry
 
 set number
-set guifont=Menlo\ Regular:h15
+"set guifont=Menlo\ Regular:h15
+"set guifont=FiraCode-Regular:h15
+set guifont=JetBrains\ Mono\ Regular:h15
+"set guifont=Monofur\ Nerd\ Font\ Mono:h17
 
 " =======================================================================================
 " => Status line
