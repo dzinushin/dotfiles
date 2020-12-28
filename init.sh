@@ -19,7 +19,7 @@ brew install git \
     wifi-password
 
 # optionally also can be installed: use-engine zoomus
-brew cask install \
+brew install --cask \
     jetbrains-toolbox \
     visual-studio-code \
     keepassxc \
@@ -38,9 +38,9 @@ brew install \
 
 # install fonts
 brew tap homebrew/cask-fonts
-brew cask install font-fira-code
-brew cask install font-monofur-nerd-font
-brew cask install font-jetbrains-mono
+brew install --cask font-fira-code
+brew install --cask font-monofur-nerd-font
+brew install --cask font-jetbrains-mono
 
 # custom scripts
 mkdir -p $HOME/bin
