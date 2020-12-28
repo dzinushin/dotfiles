@@ -16,7 +16,8 @@ brew install git \
     watch \
     tig \
     fd \
-    wifi-password
+    wifi-password \
+    speedtest-cli
 
 # optionally also can be installed: use-engine zoomus
 brew install --cask \
@@ -28,7 +29,8 @@ brew install --cask \
     robo-3t \
     tunnelbear \
     transmission \
-    rectangle
+    rectangle \
+    use-engine
 
 # https://github.com/mongodb/homebrew-brew
 brew install \
