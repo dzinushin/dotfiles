@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/dzinushin/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -68,7 +68,22 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git httpie catimg docker docker-compose zsh-syntax-highlighting fzf z zsh-autosuggestions)
+plugins=(
+  git 
+  httpie 
+  nvm 
+  npm 
+  npx 
+  sdk
+  redis-cli
+  docker 
+  docker-compose 
+  catimg 
+  fzf 
+  z 
+  zsh-syntax-highlighting 
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,5 +121,5 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=~/bin:$PATH
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/dzinushin/.sdkman"
-[[ -s "/Users/dzinushin/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/dzinushin/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
