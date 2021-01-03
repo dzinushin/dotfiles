@@ -6,6 +6,7 @@ brew install git \
     python \
     go \
     mc \
+    tldr \
     bat \
     httpie \
     p7zip \

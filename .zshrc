@@ -79,6 +79,7 @@ plugins=(
   docker 
   docker-compose 
   catimg 
+  sublime
   fzf 
   z 
   zsh-syntax-highlighting 
