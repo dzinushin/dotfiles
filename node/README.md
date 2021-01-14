@@ -34,4 +34,6 @@ nvm use --lts         # use latest lts
 nvm ls # view current installed and used versions
 
 nvm install-latest-npm
+
+nvm alias default 14.15.4 # set default version
 ```

@@ -121,6 +121,11 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=~/bin:$PATH
 
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_VERSION=3.9.1
+  eval "$(pyenv init -)"
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"

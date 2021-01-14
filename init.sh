@@ -1,25 +1,16 @@
 #!/bin/sh
 
 # install brew deps
-brew install git \
-    macvim \
-    python \
-    go \
-    mc \
-    tldr \
-    bat \
-    httpie \
-    p7zip \
-    jq \
-    yq \
-    fzf \
-    nvm \
-    watch \
-    tig \
-    fd \
-    wifi-password \
-    speedtest-cli
-
+brew install git tig
+brew install macvim mc
+brew install go
+brew install fd bat watch p7zip tldr
+brew install httpie
+brew install jq yq
+brew install fzf
+brew install nvm 
+brew install speedtest-cli wifi-password
+brew install python pyenv
 brew install redis
 
 # optionally also can be installed: use-engine zoomus
@@ -58,3 +49,6 @@ cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/"
 
 # mongo cli
 cp .mongorc.js $HOME/
+
+#
+cp .zshrc $HOME/
