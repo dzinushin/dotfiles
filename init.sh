@@ -2,6 +2,7 @@
 
 # install brew deps
 brew install git tig
+brew install direnv
 brew install macvim mc
 brew install go
 brew install fd bat watch p7zip tldr

@@ -75,6 +75,7 @@ plugins=(
   npm 
   npx 
   sdk
+  direnv
   redis-cli
   docker 
   docker-compose 
