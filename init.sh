@@ -7,6 +7,7 @@ brew install macvim mc
 brew install go
 brew install fd bat watch p7zip tldr
 brew install httpie
+brew install ht-rust
 brew install jq yq
 brew install fzf
 brew install nvm 
