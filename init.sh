@@ -25,7 +25,7 @@ brew install --cask tunnelbear
 brew install --cask transmission
 brew install --cask rectangle
 brew install --cask use-engine
-brew install --cask zoomus
+brew install --cask zoom
 
 # https://github.com/mongodb/homebrew-brew
 brew install cloudfoundry/tap/bosh-cli
