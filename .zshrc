@@ -121,6 +121,9 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=~/bin:$PATH
 
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_VERSION=3.9.1
   eval "$(pyenv init -)"
