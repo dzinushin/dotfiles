@@ -5,7 +5,7 @@ brew install git tig
 brew install direnv
 brew install macvim mc
 brew install go
-brew install fd bat watch p7zip tldr
+brew install ag fd bat watch p7zip tldr
 brew install httpie
 brew install jq yq
 brew install fzf
@@ -14,7 +14,7 @@ brew install speedtest-cli wifi-password
 brew install python pyenv
 brew install redis
 
-# optionally also can be installed: use-engine zoomus
+# optionally also can be installed: zoom
 brew install --cask jetbrains-toolbox
 brew install --cask visual-studio-code
 brew install --cask keepassxc
@@ -24,7 +24,6 @@ brew install --cask robo-3t
 brew install --cask tunnelbear
 brew install --cask transmission
 brew install --cask rectangle
-brew install --cask use-engine
 brew install --cask zoom
 brew install flycut
 
