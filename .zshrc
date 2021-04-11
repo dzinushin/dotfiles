@@ -117,10 +117,12 @@ source $ZSH/oh-my-zsh.sh
 alias mcl=~/opt/bin/mc
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "${HOMEBREW_PREFIX:-/usr/local}/opt/nvm/nvm.sh" ] && . "${HOMEBREW_PREFIX:-/usr/local}/opt/nvm/nvm.sh"  # This loads nvm
 
 export PATH=~/bin:$PATH
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_VERSION=3.9.1

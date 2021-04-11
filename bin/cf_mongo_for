@@ -10,4 +10,5 @@ if [ $? -ne 0 ]; then
   conn_string=${conn_string}'?replicaSet=rs0'
 fi
 echo "${conn_string}"
-docker run -it --net=host mongo mongo ${conn_string}
+#docker run -it --net=host mongo mongo ${conn_string}
+mongo ${conn_string}

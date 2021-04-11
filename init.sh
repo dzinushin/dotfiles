@@ -1,11 +1,15 @@
 #!/bin/sh
 
+ARCH=$(arch)
+
+
 # install brew deps
 brew install git tig
 brew install direnv
 brew install macvim mc
 brew install go
-brew install fd bat watch p7zip tldr
+brew install tmux
+brew install ag fd bat watch p7zip tldr htop
 brew install httpie
 brew install ht-rust
 brew install jq yq
@@ -15,29 +19,36 @@ brew install speedtest-cli wifi-password
 brew install python pyenv
 brew install redis
 
-# optionally also can be installed: use-engine zoomus
-brew install --cask jetbrains-toolbox
-brew install --cask visual-studio-code
-brew install --cask keepassxc
-brew install --cask slack
-brew install --cask sublime-text
-brew install --cask robo-3t
-brew install --cask tunnelbear
-brew install --cask transmission
-brew install --cask rectangle
-brew install --cask use-engine
-brew install --cask zoomus
+# optionally also can be installed: zoom
+# casks
+brew install jetbrains-toolbox
+brew install visual-studio-code
+brew install keepassxc
+brew install slack
+brew install sublime-text
+brew install robo-3t
+brew install tunnelbear
+brew install transmission
+brew install rectangle
+brew install zoom
+brew install flycut
+brew install drovio
 
 # https://github.com/mongodb/homebrew-brew
-brew install cloudfoundry/tap/bosh-cli
-brew install cloudfoundry/tap/credhub-cli
 brew install mongodb/brew/mongodb-community
+
+# https://github.com/cloudfoundry/homebrew-tap
+if [[ $ARCH != 'arm64' ]]
+then
+  brew install cloudfoundry/tap/bosh-cli
+  brew install cloudfoundry/tap/credhub-cli
+fi  
 
 # install fonts
 brew tap homebrew/cask-fonts
-brew install --cask font-fira-code
-brew install --cask font-monofur-nerd-font
-brew install --cask font-jetbrains-mono
+brew install font-fira-code
+brew install font-monofur-nerd-font
+brew install font-jetbrains-mono
 
 # custom scripts
 mkdir -p $HOME/bin
