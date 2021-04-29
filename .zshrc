@@ -125,9 +125,13 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 if command -v pyenv 1>/dev/null 2>&1; then
-  export PYENV_VERSION=3.9.1
+  export PYENV_VERSION=3.9.4
   eval "$(pyenv init -)"
 fi
+
+# Google Cloud SDK
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

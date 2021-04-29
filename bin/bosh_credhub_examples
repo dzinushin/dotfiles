@@ -7,3 +7,6 @@ credhub set -n "/cf/analytical-services/domrf_minio_secretkey" -w "xxxx" --type=
 
 credhub get --name /production/keys/banks/vtb/bank-client-secret
 
+
+credhub set -n /gcloud/storage -t json --value '{ "Access key": "", "Bucket": "", "Endpoint": "https://storage.googleapis.com", "Secret": "" }'
+
