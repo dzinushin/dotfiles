@@ -17,6 +17,7 @@ brew install nvm
 brew install speedtest-cli wifi-password
 brew install python pyenv
 brew install redis
+brew install exa
 
 # optionally also can be installed: zoom
 # casks

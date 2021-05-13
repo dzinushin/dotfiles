@@ -115,6 +115,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias mcl=~/opt/bin/mc
+alias ls=exa
+alias cat=bat
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "${HOMEBREW_PREFIX:-/usr/local}/opt/nvm/nvm.sh" ] && . "${HOMEBREW_PREFIX:-/usr/local}/opt/nvm/nvm.sh"  # This loads nvm
