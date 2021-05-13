@@ -115,6 +115,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias mcl=~/opt/bin/mc
+alias ls=exa
+alias cat=bat
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "${HOMEBREW_PREFIX:-/usr/local}/opt/nvm/nvm.sh" ] && . "${HOMEBREW_PREFIX:-/usr/local}/opt/nvm/nvm.sh"  # This loads nvm
@@ -125,9 +127,13 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 if command -v pyenv 1>/dev/null 2>&1; then
-  export PYENV_VERSION=3.9.1
+  export PYENV_VERSION=3.9.4
   eval "$(pyenv init -)"
 fi
+
+# Google Cloud SDK
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
