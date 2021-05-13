@@ -18,6 +18,7 @@ brew install speedtest-cli wifi-password
 brew install python pyenv
 brew install redis
 brew install exa
+brew install lazygit
 
 # optionally also can be installed: zoom
 # casks
