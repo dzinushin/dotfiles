@@ -19,6 +19,7 @@ brew install python pyenv
 brew install redis
 brew install exa
 brew install lazygit
+brew install google-cloud-sdk
 
 # optionally also can be installed: zoom
 # casks
