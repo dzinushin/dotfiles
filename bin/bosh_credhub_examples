@@ -9,4 +9,5 @@ credhub get --name /production/keys/banks/vtb/bank-client-secret
 
 
 credhub set -n /gcloud/storage -t json --value '{ "Access key": "", "Bucket": "", "Endpoint": "https://storage.googleapis.com", "Secret": "" }'
+credhub set -n /cloudflare/api-creds -t json --value '{ "X-Auth-Email": "", "X-Auth-Key": "", "doc-url": "https://api.cloudflare.com/#zone-purge-files-by-url" }'
 
