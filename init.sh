@@ -35,6 +35,8 @@ brew install rectangle
 brew install zoom
 brew install flycut
 brew install drovio
+brew install google-chrome
+brew install firefox
 
 # https://github.com/mongodb/homebrew-brew
 brew install mongodb/brew/mongodb-community
