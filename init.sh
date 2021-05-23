@@ -27,7 +27,7 @@ brew install jetbrains-toolbox
 brew install visual-studio-code
 brew install keepassxc
 brew install slack
-brew install sublime-text
+#brew install sublime-text
 brew install robo-3t
 brew install tunnelbear
 brew install transmission
