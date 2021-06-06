@@ -127,8 +127,10 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
   export PYENV_VERSION=3.9.4
-  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
 fi
 
 # Google Cloud SDK

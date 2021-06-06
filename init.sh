@@ -19,6 +19,8 @@ brew install speedtest-cli wifi-password
 brew install python pyenv
 brew install redis
 brew install exa
+brew install lazygit
+brew install google-cloud-sdk
 
 # optionally also can be installed: zoom
 # casks
@@ -26,7 +28,7 @@ brew install jetbrains-toolbox
 brew install visual-studio-code
 brew install keepassxc
 brew install slack
-brew install sublime-text
+#brew install sublime-text
 brew install robo-3t
 brew install tunnelbear
 brew install transmission
@@ -34,6 +36,8 @@ brew install rectangle
 brew install zoom
 brew install flycut
 brew install drovio
+brew install google-chrome
+brew install firefox
 
 # https://github.com/mongodb/homebrew-brew
 brew install mongodb/brew/mongodb-community

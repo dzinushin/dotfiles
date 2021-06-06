@@ -1,11 +1,19 @@
 {
-    // "editor.fontFamily": "'Fira Code'",
-    // "editor.fontLigatures": true,
+    "window.zoomLevel": 1,
+    "update.showReleaseNotes": false,
+
+    "workbench.colorTheme": "Monokai Dimmed",
+
+    "editor.fontFamily": "Jetbrains Mono, monospace",
+    "editor.fontLigatures": true,
     "editor.fontSize": 14,
-    "workbench.colorTheme": "Monokai",
+    "editor.renderWhitespace": "all",
+
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 500,
-    "editor.renderWhitespace": "all",
-    // "terminal.external.osxExec": "iTerm.app",
-    // "terminal.integrated.shell.osx": "zsh",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+
+    "git.rebaseWhenSync": true
 }
