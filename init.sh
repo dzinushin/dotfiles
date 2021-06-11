@@ -54,6 +54,7 @@ brew tap homebrew/cask-fonts
 brew install font-fira-code
 brew install font-monofur-nerd-font
 brew install font-jetbrains-mono
+brew install font-iosevka
 
 # custom scripts
 mkdir -p $HOME/bin
