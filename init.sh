@@ -38,6 +38,8 @@ brew install flycut
 brew install drovio
 brew install google-chrome
 brew install firefox
+brew install 1password
+brew install 1password-cli
 
 # https://github.com/mongodb/homebrew-brew
 brew install mongodb/brew/mongodb-community
