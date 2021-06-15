@@ -26,6 +26,7 @@ brew install google-cloud-sdk
 # casks
 brew install jetbrains-toolbox
 brew install visual-studio-code
+brew install sublime-text
 brew install keepassxc
 brew install slack
 #brew install sublime-text
