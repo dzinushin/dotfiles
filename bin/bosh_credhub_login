@@ -17,7 +17,7 @@ else
     CREDHUB_HOST=10.3.10.50:8844
 fi
 
-scp dzinushin@jumpbox:/opt/boshs/${MODE:-prod}/creds.yml /tmp/
+scp ${USER}@jumpbox:/opt/boshs/${MODE:-prod}/creds.yml /tmp/
 
 CREDHUB_LOGIN=credhub-admin
 #CREDHUB_LOGIN=credhub_cli_user
