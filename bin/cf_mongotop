@@ -1,0 +1,12 @@
+#!/bin/sh
+password=$(cf_mongo_root_pwd)
+
+if [[ "x$password" == "x" ]]; then
+    echo "Not logged in into bosh credhub, please run 'bosh_credhub_login' before"
+    exit -1
+fi 
+
+conn_string="mongodb://MongoRoot:${password}@10.3.18.23:27017,10.3.18.24:27017,10.3.18.25:27017/admin?replicaSet=rs0&authSource=admin"
+
+echo "${conn_string}"
+mongotop ${conn_string} 3
