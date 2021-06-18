@@ -1,0 +1,61 @@
+#!/bin/sh
+password=$(cf_mongo_root_pwd)
+
+if [[ "x$password" == "x" ]]; then
+    echo "Not logged in into bosh credhub, please run 'bosh_credhub_login' before"
+    exit -1
+fi 
+
+conn_string="mongodb://MongoRoot:${password}@10.3.18.23:27017,10.3.18.24:27017,10.3.18.25:27017/admin?replicaSet=rs0"
+
+echo "${conn_string}"
+mongo "${conn_string}" --quiet --eval '
+db = db.getSiblingDB("admin");
+var dbs = db.adminCommand("listDatabases").databases;
+var totalCount = 0;
+var totalStorageSize = 0;
+var totalIndexSize = 0;
+
+let collectionsInfo = []
+dbs.forEach(function(database) {
+    db = db.getSiblingDB(database.name);
+    cols = db.getCollectionNames();
+    cols.forEach(function(collection) {
+        try {
+            count = db[collection].count();
+            totalCount += count;
+            storageSize = db[collection].storageSize();
+            totalStorageSize += storageSize;
+            indexSize = db[collection].totalIndexSize();
+            totalIndexSize += indexSize;
+            collectionsInfo.push( { db, collection, count, storageSize, indexSize } )
+        } catch (e) {
+            print("failed to get stats for db: "+ db + " collection: " + collection + " error: " + e)
+        }
+    });
+});
+
+function formatBytes(bytes,decimals) {
+    if(bytes == 0) return "0 Bytes";
+    var k = 1000,
+        dm = decimals + 1 || 0,
+        sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],
+        i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i];
+};
+function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+    });
+}
+filteredCollectionsInfo = collectionsInfo.filter(ci => ci.storageSize > 1000000000);
+sortByKey(filteredCollectionsInfo, "storageSize");
+
+
+
+print("Database\tCollection\tCount\tStorage Size\tIndex Size");
+filteredCollectionsInfo.forEach(function(collInfo) {
+    print(collInfo.db + "\t" + collInfo.collection + "\t" + collInfo.count + "\t" + formatBytes(collInfo.storageSize) + "\t" + formatBytes(collInfo.indexSize));
+});
+' | column -s $'\t' -t
