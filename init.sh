@@ -45,6 +45,10 @@ brew install 1password-cli
 # https://github.com/mongodb/homebrew-brew
 brew install mongodb/brew/mongodb-community
 
+# apg
+brew tap jzaleski/homebrew-jzaleski
+brew install apg
+
 # https://github.com/cloudfoundry/homebrew-tap
 if [[ $ARCH != 'arm64' ]]
 then
