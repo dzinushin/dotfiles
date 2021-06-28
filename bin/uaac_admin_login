@@ -1,0 +1,20 @@
+#!/bin/bash
+## use:
+##    UAAC_ADMIN_PWD=<> uaac_admin_login
+
+if [[ "x$UAAC_ADMIN_PWD" == "x" ]]; then
+    echo "use:"
+    echo "   UAAC_ADMIN_PWD=<password> uaac_admin_login"
+    exit -1
+fi
+
+uaac target https://uaa.fin.cian.ru --skip-ssl-validation
+
+uaac token client get admin -s ${UAAC_ADMIN_PWD}
+
+## display short manual 
+echo "Use uaac for:"
+echo "    uaac users"
+echo "    uaac users -a emails | grep value"
+echo "    uaac user get <username>"
+echo "    uaac user get <username> | grep display # for view user groups"
