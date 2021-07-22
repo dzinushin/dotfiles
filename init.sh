@@ -77,5 +77,9 @@ cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/"
 # mongo cli
 cp .mongorc.js $HOME/
 
+# git
+cp .gitconfig $HOME/
+cp .gitignore $HOME/
+
 #
 cp .zshrc $HOME/
