@@ -116,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias mcl=~/opt/bin/mc
 alias ls=exa
-alias la='ls -la+'
+alias la='ls -la'
 alias cat=bat
 
 export NVM_DIR="$HOME/.nvm"
