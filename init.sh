@@ -21,6 +21,7 @@ brew install redis
 brew install exa
 brew install lazygit
 brew install google-cloud-sdk
+brew install kubectl
 
 # optionally also can be installed: zoom
 # casks
