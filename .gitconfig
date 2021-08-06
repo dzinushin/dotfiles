@@ -1,6 +1,8 @@
-[user]
-	name = Dmitry Zinushin
-	email = zinushin@gmail.com
+[includeIf "gitdir:~/dev/personal/"]
+	path = .gitconfig-personal
+[includeIf "gitdir:~/dev/work/"]
+	path = .gitconfig-work
+
 [alias]
 	co = checkout
 	br = branch

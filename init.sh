@@ -80,7 +80,10 @@ cp .mongorc.js $HOME/
 
 # git
 cp .gitconfig $HOME/
+cp .gitconfig-personal $HOME/
+cp .gitconfig-work $HOME/
 cp .gitignore $HOME/
+
 
 #
 cp .zshrc $HOME/
