@@ -22,6 +22,7 @@ brew install exa
 brew install lazygit
 brew install google-cloud-sdk
 brew install kubectl
+brew install neofetch
 
 # casks
 brew install jetbrains-toolbox
