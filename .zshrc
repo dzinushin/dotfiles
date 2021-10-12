@@ -83,11 +83,14 @@ plugins=(
   sublime
   fzf 
   z 
+  kube-ps1
   zsh-syntax-highlighting 
   zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
+
+PROMPT=$PROMPT'$(kube_ps1) '
 
 # User configuration
 

@@ -22,6 +22,8 @@ brew install exa
 brew install lazygit
 brew install google-cloud-sdk
 brew install kubectl
+brew install kubectx
+brew install kube-ps1
 brew install neofetch
 
 # casks
