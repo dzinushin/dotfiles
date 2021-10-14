@@ -10,6 +10,7 @@ brew install macvim mc
 brew install go
 brew install tmux
 brew install ag fd bat watch p7zip tldr htop
+brew install rg
 brew install httpie
 brew install ht-rust
 brew install jq yq
