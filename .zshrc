@@ -83,6 +83,7 @@ plugins=(
   sublime
   fzf 
   z 
+  kubectl
   kube-ps1
   zsh-syntax-highlighting 
   zsh-autosuggestions
