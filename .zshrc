@@ -82,6 +82,7 @@ plugins=(
   docker-compose 
   catimg 
   sublime
+  ripgrep
   fzf 
   z 
   kubectl
