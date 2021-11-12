@@ -51,6 +51,9 @@ brew install raycast
 brew install obsidian
 brew install hiddenbar
 
+brew install rs/tap/curlie
+brew install lindell/multi-gitter/multi-gitter
+
 # https://github.com/mongodb/homebrew-brew
 brew install mongodb/brew/mongodb-community
 
