@@ -1,4 +1,13 @@
 #!/bin/sh
+
+MODE=$1
+echo "MODE: $MODE"
+
+if [[ "$MODE" != "stage" && "x$MODE" != "x" ]]; then
+    echo "Only parameter 'stage' allowed"
+    exit -1
+fi 
+
 password=$(cf_mongo_root_pwd)
 
 if [[ "x$password" == "x" ]]; then
@@ -6,7 +15,14 @@ if [[ "x$password" == "x" ]]; then
     exit -1
 fi 
 
-conn_string="mongodb://MongoRoot:${password}@10.3.18.23:27017,10.3.18.24:27017,10.3.18.25:27017/admin?replicaSet=rs0"
+#conn_string="mongodb://MongoRoot:${password}@10.3.18.23:27017,10.3.18.24:27017,10.3.18.25:27017/admin?replicaSet=rs0"
+if [ "$MODE" == "stage" ]; then
+    echo "Login to STAGE mongodb"
+    conn_string="mongodb://MongoRoot:${password}@10.3.16.23:27017,10.3.16.24:27017,10.3.16.25:27017/admin?replicaSet=rs0"
+else
+    echo "Login to PRODUCTION mongodb"
+    conn_string="mongodb://MongoRoot:${password}@10.3.18.23:27017,10.3.18.24:27017,10.3.18.25:27017/admin?replicaSet=rs0"
+fi
 
 echo "${conn_string}"
 mongo "${conn_string}" --quiet --eval '
