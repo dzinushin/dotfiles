@@ -74,7 +74,6 @@ plugins=(
   httpie 
   nvm 
   npm 
-  npx 
   sdk
   direnv
   redis-cli
