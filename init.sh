@@ -28,6 +28,7 @@ brew install kubectl
 brew install kubectx
 brew install kube-ps1
 brew install k9s
+brew install krew
 
 # casks
 brew install jetbrains-toolbox
