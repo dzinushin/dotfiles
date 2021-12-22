@@ -51,6 +51,7 @@ brew install 1password-cli
 brew install raycast
 brew install obsidian
 brew install hiddenbar
+brew install open-vpn
 
 brew install rs/tap/curlie
 brew install lindell/multi-gitter/multi-gitter
