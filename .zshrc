@@ -69,10 +69,10 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git 
+  git
   gradle
-  httpie 
-  nvm 
+  httpie
+  nvm
   npm 
   sdk
   direnv
@@ -125,7 +125,8 @@ alias la='ls -la'
 alias cat=bat
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "${HOMEBREW_PREFIX:-/usr/local}/opt/nvm/nvm.sh" ] && . "${HOMEBREW_PREFIX:-/usr/local}/opt/nvm/nvm.sh"  # This loads nvm
+export NVM_HOMEBREW="${HOMEBREW_PREFIX:-/usr/local}/opt/nvm"
+[ -s "${NVM_HOMEBREW}/nvm.sh" ] && . "${NVM_HOMEBREW}/nvm.sh"  # This loads nvm
 
 export PATH=~/bin:$PATH
 
