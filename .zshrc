@@ -131,9 +131,8 @@ export NVM_HOMEBREW="${HOMEBREW_PREFIX:-/usr/local}/opt/nvm"
 export PATH=~/bin:$PATH
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-export PATH=$PATH:${HOME}/.krew/bin
+export PATH=$GOPATH/bin:$PATH
+export PATH=${HOME}/.krew/bin:$PATH
 
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
@@ -156,4 +155,3 @@ if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-clo
 # Google Cloud SDK
 [ -s "${HOMEBREW_PREFIX:-/usr/local}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ] && source "${HOMEBREW_PREFIX:-/usr/local}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 [ -s "${HOMEBREW_PREFIX:-/usr/local}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" ] && source "${HOMEBREW_PREFIX:-/usr/local}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
