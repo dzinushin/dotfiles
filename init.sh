@@ -9,7 +9,7 @@ brew install direnv
 brew install macvim mc
 brew install go
 brew install tmux
-brew install ag fd bat watch p7zip tldr htop
+brew install ag fd bat exa tree watch p7zip tldr htop
 brew install rg
 brew install httpie
 brew install ht-rust
@@ -19,7 +19,6 @@ brew install nvm
 brew install speedtest-cli wifi-password
 brew install python pyenv
 brew install redis
-brew install exa
 brew install lazygit
 brew install google-cloud-sdk
 brew install neofetch
