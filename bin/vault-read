@@ -1,0 +1,8 @@
+#!/bin/bash
+
+vault_token=$1
+# echo "vault_token: $vault_token"
+vault_key=$2
+# echo "vault_key: $vault_key"
+
+curl -s -XGET -H "X-Vault-Token: ${vault_token}" ${VAULT_HOST}/v1/${vault_key}

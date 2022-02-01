@@ -1,0 +1,6 @@
+#!/bin/bash
+# get vault token
+
+resp=$(curl -s -XPOST --data "{\"role_id\":\"${VAULT_AUTH_ROLE_ID}\",\"secret_id\":\"${VAULT_AUTH_SECRET_ID}\"}" ${VAULT_HOST}/v1/auth/approle/login)
+token=$(echo $resp | jq -re .auth.client_token)
+echo -n $token

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# this script configure yc cli config placed in
+#   ~/.config/yandex-cloud/config.yml
+
+vault_token=$(./vault-get-approle-token)
+key="yandex-tokens/data/keys/sa-gitlab"
+yc_config=$(./vault-read $vault_token $key | jq -re .data.data.key)
+
+echo $yc_config > config.json
+yc config set service-account-key config.json
+yc config set cloud-id $CLOUD_ID
+yc config set folder-id $FOLDER_ID
+rm config.json
