@@ -3,12 +3,20 @@
 # this script configure yc cli config placed in
 #   ~/.config/yandex-cloud/config.yml
 
-vault_token=$(./vault-get-approle-token)
-key="yandex-tokens/data/keys/sa-gitlab"
-yc_config=$(./vault-read $vault_token $key | jq -re .data.data.key)
+if [[ -z "$VAULT_HOST" || -z "$VAULT_AUTH_ROLE_ID" || -z "$VAULT_AUTH_SECRET_ID" || -z "$CLOUD_ID" || -z "$FOLDER_ID" ]]; then
+	echo "*** Error: define env vars: VAULT_HOST, VAULT_AUTH_ROLE_ID, VAULT_AUTH_SECRET_ID, CLOUD_ID, FOLDER_ID"
+	exit 1
+fi
 
-echo $yc_config > config.json
+vault_token=$(vault-get-approle-token)
+key="yandex-tokens/data/keys/sa-gitlab"
+yc_config=$(vault-read $vault_token $key | jq -re .data.data.key)
+
+echo $yc_config | tee config.json | jq
 yc config set service-account-key config.json
 yc config set cloud-id $CLOUD_ID
 yc config set folder-id $FOLDER_ID
 rm config.json
+echo
+echo "configured yc configuration, you can check with command:"
+echo "    yc resource-manager cloud list"
