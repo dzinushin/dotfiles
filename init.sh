@@ -13,7 +13,7 @@ brew install ag fd bat exa tree watch p7zip tldr htop
 brew install rg
 brew install httpie
 brew install ht-rust
-brew install jq yq
+brew install jq yq jless
 brew install fzf
 brew install nvm 
 brew install speedtest-cli wifi-password
