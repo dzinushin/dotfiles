@@ -41,8 +41,8 @@ brew install tunnelbear
 brew install transmission
 brew install rectangle
 brew install zoom
-brew install flycut
-brew install drovio
+# brew install flycut
+# brew install drovio
 brew install google-chrome
 brew install firefox
 brew install 1password
