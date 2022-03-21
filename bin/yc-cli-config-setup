@@ -20,3 +20,4 @@ rm config.json
 echo
 echo "configured yc configuration, you can check with command:"
 echo "    yc resource-manager cloud list"
+echo "    yc resource-manager folder list --cloud-id <CLOUD-ID>"
