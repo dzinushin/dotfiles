@@ -52,7 +52,7 @@ brew install obsidian
 brew install hiddenbar
 brew install openvpn-connect
 brew install protonvpn
-brew install postgreql
+brew install postgresql
 
 brew install rs/tap/curlie
 brew install lindell/multi-gitter/multi-gitter
