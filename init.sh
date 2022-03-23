@@ -51,6 +51,7 @@ brew install raycast
 brew install obsidian
 brew install hiddenbar
 brew install openvpn-connect
+brew install protonvpn
 brew install postgreql
 
 brew install rs/tap/curlie
