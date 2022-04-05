@@ -1,0 +1,17 @@
+#!/bin/bash
+
+kubectl config set-cluster ${K8S_CLUSTER} \
+               --server=${K8S_SERVER} \
+               --insecure-skip-tls-verify=true
+
+kubectl config set-credentials ${K8S_USER} \
+               --token="${K8S_TOKEN}" 
+
+context_name="${K8S_USER}@${K8S_CLUSTER}"
+echo "context name: $context_name"
+
+kubectl config set-context $context_name \
+               --cluster=${K8S_CLUSTER} \
+               --user=${K8S_USER}
+
+kubectl config use-context ${context_name}
