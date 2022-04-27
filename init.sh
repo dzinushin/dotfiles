@@ -41,6 +41,7 @@ brew install robo-3t
 brew install tunnelbear
 brew install transmission
 brew install rectangle
+brew install telegram
 brew install zoom
 # brew install flycut
 # brew install drovio
