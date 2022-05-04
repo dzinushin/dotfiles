@@ -1,0 +1,8 @@
+#!/bin/bash
+
+app=$(kubectl get secrets | grep "\.redis" | cut -d' ' -f1 | fzf -m)
+echo $app
+conn_string=$(kubectl get secret $app --template='{{.data.url}}' | base64 -d)
+echo "redis url=\"${conn_string}\""
+#docker run -it --net=host mongo mongo ${conn_string}
+redis-cli -u ${conn_string}
