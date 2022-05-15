@@ -87,6 +87,7 @@ plugins=(
   z 
   kubectl
   kube-ps1
+  helm
   zsh-syntax-highlighting 
   zsh-autosuggestions
 )
