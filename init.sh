@@ -73,7 +73,8 @@ if [[ $ARCH != 'arm64' ]]
 then
   brew install cloudfoundry/tap/bosh-cli
   brew install cloudfoundry/tap/credhub-cli
-fi  
+fi
+brew install vlc
 
 # install fonts
 brew tap homebrew/cask-fonts
