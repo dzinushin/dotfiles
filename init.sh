@@ -57,6 +57,7 @@ brew install openvpn-connect
 brew install protonvpn
 brew install mullvadvpn
 brew install postgresql
+brew install pgadmin4
 
 brew install rs/tap/curlie
 brew install lindell/multi-gitter/multi-gitter
