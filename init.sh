@@ -76,6 +76,7 @@ then
   brew install cloudfoundry/tap/credhub-cli
 fi
 brew install vlc
+brew install android-file-transfer
 
 # install fonts
 brew tap homebrew/cask-fonts
