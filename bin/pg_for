@@ -1,0 +1,7 @@
+#!/bin/bash
+
+app=$(kubectl get secrets | grep "\.postgre" | cut -d' ' -f1 | fzf -m)
+echo $app
+conn_string=$(kubectl get secret $app --template='{{.data.url}}' | base64 -d)
+echo "postgre url=\"${conn_string}\""
+psql ${conn_string}
