@@ -22,6 +22,7 @@ brew install redis
 brew install lazygit
 brew install google-cloud-sdk
 brew install neofetch
+brew install youtube-dl
 # k8s staff
 brew install kubectl
 brew install kubectx
