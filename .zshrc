@@ -139,7 +139,7 @@ export PATH=${HOME}/.krew/bin:$PATH
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
-  export PYENV_VERSION=3.10.4
+  export PYENV_VERSION="3.10.5"
   eval "$(pyenv init --path)"
 fi
 

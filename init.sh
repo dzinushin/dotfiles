@@ -86,6 +86,9 @@ brew install font-monofur-nerd-font
 brew install font-jetbrains-mono
 brew install font-iosevka
 
+# install python
+pyenv install -s 3.10.5
+
 # custom scripts
 mkdir -p $HOME/bin
 cp ./bin/* $HOME/bin/
