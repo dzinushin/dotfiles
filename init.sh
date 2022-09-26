@@ -50,8 +50,8 @@ brew install zoom
 # brew install drovio
 brew install google-chrome
 brew install firefox
-brew install 1password
-brew install 1password-cli
+#brew install 1password
+#brew install 1password-cli
 brew install raycast
 brew install obsidian
 brew install hiddenbar
