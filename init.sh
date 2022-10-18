@@ -15,6 +15,7 @@ brew install rg
 brew install httpie
 brew install ht-rust
 brew install jq yq jless
+brew install xq
 brew install fzf
 brew install nvm 
 brew install speedtest-cli wifi-password
