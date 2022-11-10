@@ -60,6 +60,7 @@ brew install openvpn-connect
 brew install protonvpn
 brew install mullvadvpn
 brew install postgresql
+brew install pgcli
 brew install pgadmin4
 
 brew install rs/tap/curlie
