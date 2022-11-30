@@ -40,11 +40,10 @@ brew install visual-studio-code
 brew install sublime-text
 brew install keepassxc
 brew install slack
-brew install sublime-text
 brew install robo-3t
 brew install tunnelbear
 brew install transmission
-brew install rectangle
+#brew install rectangle
 brew install telegram
 brew install zoom
 # brew install flycut
@@ -64,6 +63,7 @@ brew install pgcli
 brew install pgadmin4
 
 brew install rs/tap/curlie
+brew install hurl
 brew install lindell/multi-gitter/multi-gitter
 
 # https://github.com/mongodb/homebrew-brew
@@ -74,11 +74,11 @@ brew tap jzaleski/homebrew-jzaleski
 brew install apg
 
 # https://github.com/cloudfoundry/homebrew-tap
-if [[ $ARCH != 'arm64' ]]
-then
-  brew install cloudfoundry/tap/bosh-cli
-  brew install cloudfoundry/tap/credhub-cli
-fi
+#if [[ $ARCH != 'arm64' ]]
+#then
+#  brew install cloudfoundry/tap/bosh-cli
+#  brew install cloudfoundry/tap/credhub-cli
+#fi
 brew install vlc
 brew install android-file-transfer
 
