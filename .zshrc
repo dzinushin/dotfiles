@@ -124,7 +124,7 @@ PROMPT=$PROMPT'$(kube_ps1) '
 alias mcl=~/opt/bin/mc
 alias ls=exa
 alias la='ls -la'
-alias cat=bat
+alias cat='bat --plain'
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_HOMEBREW="${HOMEBREW_PREFIX:-/usr/local}/opt/nvm"
