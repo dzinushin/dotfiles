@@ -1,0 +1,4 @@
+alias ypl="yc config profile list"
+alias ypa="yc config profile activate"
+alias ycl="yc resource-manager cloud list"
+alias yfl="yc resource-manager folder list"
