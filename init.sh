@@ -114,3 +114,4 @@ cp .gitignore $HOME/
 
 #
 cp .zshrc $HOME/
+cp .yc-aliases $HOME/
