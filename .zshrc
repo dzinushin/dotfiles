@@ -125,6 +125,7 @@ alias mcl=~/opt/bin/mc
 alias ls=exa
 alias la='ls -la'
 alias cat='bat --plain'
+source ~/.yc-aliases
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_HOMEBREW="${HOMEBREW_PREFIX:-/usr/local}/opt/nvm"

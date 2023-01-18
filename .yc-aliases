@@ -1,4 +1,18 @@
+# 
+
+# configuaration
 alias ypl="yc config profile list"
 alias ypa="yc config profile activate"
+
+# 
 alias ycl="yc resource-manager cloud list"
 alias yfl="yc resource-manager folder list"
+
+# container registry
+alias ycregl="yc container registry list"
+alias ycrepl="yc container repository list"
+## how filter by repository: yc container image list --repository-name="crpen0brf260nmtkj6ob/bumper"
+alias ycimgl="yc container image list"
+
+# k8s
+alias yccl="yc container cluster list"
