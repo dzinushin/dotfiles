@@ -16,3 +16,8 @@ alias ycimgl="yc container image list"
 
 # k8s
 alias yccl="yc container cluster list"
+
+# managed postgresql
+alias ympcl="yc managed-postgresql cluster list"
+alias ympdl="yc managed-postgresql database list"
+alias ympul="yc managed-postgresql user list"
