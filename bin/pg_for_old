@@ -1,0 +1,10 @@
+#!/bin/bash
+
+user=$(kubectl get configmaps postgresql --template={{.data.user}})
+hosts=$(kubectl get configmaps postgresql --template={{.data.hosts}})
+password=$(kubectl get secret postgresql --template='{{.data.password}}' | base64 -d)
+#echo "password=${password}"
+conn_string="postgres://${user}:${password}@${hosts}/${user}?sslmode=disable&target_session_attrs=read-write"
+echo "postgre url=\"${conn_string}\""
+#psql ${conn_string}
+pgcli ${conn_string}
