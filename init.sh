@@ -82,6 +82,9 @@ brew install apg
 brew install vlc
 brew install android-file-transfer
 
+# raspberry pi staff
+brew install raspberry-pi-imager
+
 # install fonts
 brew tap homebrew/cask-fonts
 brew install font-fira-code
