@@ -19,6 +19,8 @@ brew install xq
 brew install fzf
 brew install nvm 
 brew install speedtest-cli wifi-password
+brew install vnc-viewer
+brew install nmap
 brew install python pyenv
 brew install redis
 brew install lazygit
