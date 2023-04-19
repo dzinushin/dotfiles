@@ -24,7 +24,6 @@ brew install nmap
 brew install python pyenv
 brew install redis
 brew install lazygit
-brew install google-cloud-sdk
 brew install neofetch
 brew install youtube-dl
 # k8s staff
