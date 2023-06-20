@@ -94,7 +94,7 @@ brew install font-jetbrains-mono
 brew install font-iosevka
 
 # install python
-pyenv install --skip-existing 3.11.1
+pyenv install --skip-existing 3.11.4
 
 # custom scripts
 mkdir -p $HOME/bin
