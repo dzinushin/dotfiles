@@ -25,6 +25,7 @@ brew install python pyenv
 brew install redis
 brew install lazygit
 brew install neofetch
+brew install gping
 brew install youtube-dl
 # k8s staff
 brew install kubectl
