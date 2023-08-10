@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-jq -R 'split(".") | .[1] | @base64d | fromjson' <<< $1
+# https://gist.github.com/angelo-v/e0208a18d455e2e6ea3c40ad637aac53
+#jq -R 'split(".") | .[1] | @base64d | fromjson' <<< $1
+jq -R 'gsub("-";"+") | gsub("_";"/") | split(".") | select(length > 0) | .[0],.[1] | @base64d | fromjson' <<< $1
