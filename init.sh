@@ -35,6 +35,8 @@ brew install k9s
 brew install krew
 brew install minikube
 brew install helm
+# 
+brew install mkcert
 
 # casks
 brew install jetbrains-toolbox
