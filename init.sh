@@ -27,6 +27,8 @@ brew install lazygit
 brew install neofetch
 brew install gping
 brew install youtube-dl
+# clouds
+brew install yandex-cloud-cli
 # k8s staff
 brew install kubectl
 brew install kubectx
