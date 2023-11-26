@@ -47,7 +47,7 @@ brew install sublime-text
 brew install keepassxc
 brew install slack
 brew install robo-3t
-brew install tunnelbear
+#brew install tunnelbear
 brew install transmission
 #brew install rectangle
 brew install telegram
@@ -62,8 +62,8 @@ brew install raycast
 brew install obsidian
 brew install hiddenbar
 brew install openvpn-connect
-brew install protonvpn
-brew install mullvadvpn
+#brew install protonvpn
+#brew install mullvadvpn
 brew install postgresql
 brew install pgcli
 brew install pgadmin4
@@ -90,6 +90,9 @@ brew install android-file-transfer
 
 # raspberry pi staff
 brew install raspberry-pi-imager
+
+# jwt cli
+brew install mike-engel/jwt-cli/jwt-cli
 
 # install fonts
 brew tap homebrew/cask-fonts
