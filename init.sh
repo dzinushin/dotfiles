@@ -47,6 +47,7 @@ brew install sublime-text
 brew install keepassxc
 brew install slack
 brew install robo-3t
+brew install dbeaver-community
 #brew install tunnelbear
 brew install transmission
 #brew install rectangle
