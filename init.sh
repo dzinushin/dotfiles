@@ -92,8 +92,10 @@ brew install android-file-transfer
 # raspberry pi staff
 brew install raspberry-pi-imager
 
-# jwt cli
+# jwt staff
 brew install mike-engel/jwt-cli/jwt-cli
+brew tap jwt-rs/jwt-ui
+brew install jwt-ui
 
 # install fonts
 brew tap homebrew/cask-fonts
