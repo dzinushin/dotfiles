@@ -1,0 +1,43 @@
+#!/opt/homebrew/bin/bash
+##
+## used file with format:
+## <db-name> <db-password>
+
+declare -A dbs
+
+pgdb_file="${HOME}/.pgdb_dev"
+
+echo "using file $pgdb_file"
+
+while read -r key value; do
+  dbs[$key]=$value
+done < $pgdb_file
+
+keys=${!dbs[@]}
+#echo $keys
+
+app=$(echo $keys | tr " " "\n" | fzf -m)
+echo $app
+pwd=${dbs[$app]}
+#echo "$app:$pwd"
+
+#cluster_hosts="rc1a-7w8iuq4iaz2eknay.mdb.yandexcloud.net,rc1b-hsq0xbl2dvppohjg.mdb.yandexcloud.net"
+cluster_hosts2="c-c9qr8qpmq0507lic1sp4.rw.mdb.yandexcloud.net:6432"
+
+# conn_str="\
+# host=$cluster_hosts \
+# port=6432 \
+# sslmode=verify-full \
+# dbname=$app \
+# user=$app \
+# target_session_attrs=read-write"
+
+conn_str2="postgresql://$app@$cluster_hosts2/$app?ssl=true&sslmode=verify-full"
+
+# echo "conn_str=\"$conn_str\""
+echo "conn_str2=\"$conn_str2\""
+
+export PGPASSWORD=$pwd
+
+#psql "$conn_str2"
+pgcli "$conn_str2"
