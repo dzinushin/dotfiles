@@ -27,8 +27,13 @@ brew install lazygit
 brew install neofetch
 brew install gping
 brew install youtube-dl
+
+# translate in shell
+brew install translate-shell
+
 # clouds
 brew install yandex-cloud-cli
+
 # k8s staff
 brew install kubectl
 brew install kubectx
@@ -37,6 +42,7 @@ brew install k9s
 brew install krew
 brew install minikube
 brew install helm
+
 # 
 brew install mkcert
 
@@ -62,9 +68,6 @@ brew install firefox
 brew install raycast
 brew install obsidian
 brew install hiddenbar
-brew install openvpn-connect
-#brew install protonvpn
-#brew install mullvadvpn
 brew install postgresql
 brew install pgcli
 brew install pgadmin4
@@ -96,6 +99,11 @@ brew install raspberry-pi-imager
 brew install mike-engel/jwt-cli/jwt-cli
 brew tap jwt-rs/jwt-ui
 brew install jwt-ui
+
+# vpn staff
+#brew install openvpn-connect
+#brew install protonvpn
+#brew install mullvadvpn
 
 # install fonts
 brew tap homebrew/cask-fonts
