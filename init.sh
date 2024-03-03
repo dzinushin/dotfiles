@@ -5,6 +5,7 @@ ARCH=$(arch)
 
 # install brew deps
 brew install git tig
+brew install stow
 brew install direnv
 brew install macvim mc
 brew install go
@@ -68,6 +69,8 @@ brew install firefox
 brew install raycast
 brew install obsidian
 brew install hiddenbar
+
+# postgresql
 brew install postgresql
 brew install pgcli
 brew install pgadmin4
@@ -115,26 +118,20 @@ brew install font-iosevka
 # install python
 pyenv install --skip-existing 3.11.4
 
-# custom scripts
-mkdir -p $HOME/bin
-cp ./bin/* $HOME/bin/
 
-# vim config
-cp .vimrc $HOME/
 
 # VS Code config file
-cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/"
-
-# mongo cli
-cp .mongorc.js $HOME/
-
-# git
-cp .gitconfig $HOME/
-cp .gitconfig-personal $HOME/
-cp .gitconfig-work $HOME/
-cp .gitignore $HOME/
+#cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/"
 
 
-#
-cp .zshrc $HOME/
-cp .yc-aliases $HOME/
+# how delete:
+#   stow -D <pkg-name> -t $HOME
+# for example:
+#   stow -D bindir -t $HOME
+stow git -t $HOME
+cp git/.gitignore $HOME/
+stow zsh -t $HOME
+stow bindir -t $HOME
+stow vim -t $HOME
+stow tmux -t $HOME
+stow mongo -t $HOME
