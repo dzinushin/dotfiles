@@ -27,7 +27,8 @@ brew install redis
 brew install lazygit
 brew install neofetch
 brew install gping
-brew install youtube-dl
+# replacement for youtube-dl
+brew install yt-dlp 
 
 # translate in shell
 brew install translate-shell
