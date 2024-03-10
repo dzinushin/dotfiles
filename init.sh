@@ -10,7 +10,7 @@ brew install direnv
 brew install macvim mc
 brew install go
 brew install tmux
-brew install ag fd bat exa tree watch p7zip tldr htop
+brew install ag fd bat eza tree watch p7zip tldr htop
 brew install duf
 brew install rg
 brew install httpie
