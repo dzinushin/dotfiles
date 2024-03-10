@@ -32,7 +32,7 @@ cluster_hosts2="rc1a-7w8iuq4iaz2eknay.mdb.yandexcloud.net:6432,rc1b-hsq0xbl2dvpp
 # user=$app \
 # target_session_attrs=read-write"
 
-conn_str2="postgresql://$app@$cluster_hosts2/$app?ssl=true&sslmode=verify-full"
+conn_str2="postgresql://$app@$cluster_hosts2/$app?ssl=true&sslmode=verify-full&target_session_attrs=read-write"
 
 # echo "conn_str=\"$conn_str\""
 echo "conn_str2=\"$conn_str2\""
