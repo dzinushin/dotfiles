@@ -1,4 +1,19 @@
-# 
+# My custom aliases
+
+#alias mcl=~/opt/bin/mc
+alias ls=eza
+alias la='ls -la'
+#alias cat='bat'
+alias kx=kubectx
+
+
+###########################################################
+# trans alias
+alias tren="trans en:ru"
+alias trru="trans ru:en"
+
+###########################################################
+# yc cli aliases
 
 # configuaration
 alias ypl="yc config profile list"

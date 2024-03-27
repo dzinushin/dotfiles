@@ -123,12 +123,7 @@ PROMPT=$PROMPT'$(kube_ps1) '
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias mcl=~/opt/bin/mc
-alias ls=eza
-alias la='ls -la'
-alias cat='bat --plain'
-alias kx=kubectx
-source ~/.yc-aliases
+source ~/.aliases
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_HOMEBREW="${HOMEBREW_PREFIX:-/usr/local}/opt/nvm"
