@@ -5,6 +5,7 @@ ARCH=$(arch)
 
 # install brew deps
 brew install git tig
+brew install gh
 brew install stow
 brew install direnv
 brew install macvim mc
