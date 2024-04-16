@@ -5,6 +5,7 @@ alias ls=eza
 alias la='ls -la'
 #alias cat='bat'
 alias kx=kubectx
+alias o='open .'
 
 
 ###########################################################
