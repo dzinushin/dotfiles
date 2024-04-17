@@ -31,6 +31,9 @@ brew install gping
 # replacement for youtube-dl
 brew install yt-dlp
 
+# chatgpt-cli https://github.com/kardolus/chatgpt-cli
+brew tap kardolus/chatgpt-cli && brew install chatgpt-cli
+
 # translate in shell
 brew install translate-shell
 
