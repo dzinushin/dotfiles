@@ -31,6 +31,7 @@ brew install gping
 # replacement for youtube-dl
 brew install yt-dlp
 
+brew install lulu
 # chatgpt-cli https://github.com/kardolus/chatgpt-cli
 brew tap kardolus/chatgpt-cli && brew install chatgpt-cli
 
