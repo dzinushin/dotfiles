@@ -6,7 +6,7 @@ alias la='ls -la'
 #alias cat='bat'
 alias kx=kubectx
 alias o='open .'
-
+alias ms="mcs search"
 
 ###########################################################
 # trans alias
