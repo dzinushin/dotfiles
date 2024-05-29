@@ -39,7 +39,7 @@ brew tap kardolus/chatgpt-cli && brew install chatgpt-cli
 brew install translate-shell
 
 # clouds
-brew install yandex-cloud-cli
+#brew install yandex-cloud-cli
 
 # k8s staff
 brew install kubectl
@@ -81,6 +81,10 @@ brew install postgresql
 brew install pgcli
 brew install pgadmin4
 
+# kafka
+brew install kcat
+brew tap deviceinsight/packages && brew install deviceinsight/packages/kafkactl
+
 brew install rs/tap/curlie
 brew install hurl
 brew install lindell/multi-gitter/multi-gitter
@@ -89,8 +93,7 @@ brew install lindell/multi-gitter/multi-gitter
 brew install mongodb/brew/mongodb-community
 
 # apg
-brew tap jzaleski/homebrew-jzaleski
-brew install apg
+brew tap jzaleski/homebrew-jzaleski && brew install apg
 
 # https://github.com/cloudfoundry/homebrew-tap
 #if [[ $ARCH != 'arm64' ]]
@@ -106,8 +109,7 @@ brew install raspberry-pi-imager
 
 # jwt staff
 brew install mike-engel/jwt-cli/jwt-cli
-brew tap jwt-rs/jwt-ui
-brew install jwt-ui
+brew tap jwt-rs/jwt-ui && brew install jwt-ui
 
 # vpn staff
 #brew install openvpn-connect
@@ -115,15 +117,15 @@ brew install jwt-ui
 #brew install mullvadvpn
 
 # install fonts
-brew tap homebrew/cask-fonts
+#brew tap homebrew/cask-fonts
 brew install font-fira-code
 brew install font-monofur-nerd-font
 brew install font-jetbrains-mono
 brew install font-iosevka
 
 # install python
-pyenv install --skip-existing 3.11.4
-
+PYVER="3.12.3" 
+pyenv install --skip-existing $PYVER && pyenv global $PYVER
 
 
 # VS Code config file
