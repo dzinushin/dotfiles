@@ -61,8 +61,7 @@ brew install keepassxc
 brew install slack
 brew install robo-3t
 brew install dbeaver-community
-#brew install tunnelbear
-brew install transmission
+brew install transmission-cli
 #brew install rectangle
 brew install telegram
 brew install zoom
@@ -115,6 +114,7 @@ brew tap jwt-rs/jwt-ui && brew install jwt-ui
 #brew install openvpn-connect
 #brew install protonvpn
 #brew install mullvadvpn
+#brew install tunnelbear
 
 # install fonts
 #brew tap homebrew/cask-fonts
