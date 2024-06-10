@@ -73,7 +73,8 @@ brew install firefox
 #brew install 1password-cli
 brew install raycast
 brew install obsidian
-brew install hiddenbar
+#brew install hiddenbar
+brew install jordanbaird-ice
 
 # postgresql
 brew install postgresql

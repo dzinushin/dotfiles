@@ -21,8 +21,9 @@ echo $app
 pwd=${dbs[$app]}
 #echo "$app:$pwd"
 
-#cluster_hosts="rc1a-7w8iuq4iaz2eknay.mdb.yandexcloud.net,rc1b-hsq0xbl2dvppohjg.mdb.yandexcloud.net"
-cluster_hosts2="rc1a-7w8iuq4iaz2eknay.mdb.yandexcloud.net:6432,rc1b-hsq0xbl2dvppohjg.mdb.yandexcloud.net:6432,rc1d-qhy12ehu60s1hyw2.mdb.yandexcloud.net:6432"
+#cluster_hosts="rc1a-7w8iuq4iaz2eknay.mdb.yandexcloud.net,rc1b-hsq0xbl2dvppohjg.mdb.yandexcloud.net,rc1d-qhy12ehu60s1hyw2.mdb.yandexcloud.net"
+#cluster_hosts2="rc1a-7w8iuq4iaz2eknay.mdb.yandexcloud.net:6432,rc1b-hsq0xbl2dvppohjg.mdb.yandexcloud.net:6432,rc1d-qhy12ehu60s1hyw2.mdb.yandexcloud.net:6432"
+cluster_hosts2="c-c9q7838ikf1916k98mht.rw.mdb.yandexcloud.net:6432"
 
 # conn_str="\
 # host=$cluster_hosts \
