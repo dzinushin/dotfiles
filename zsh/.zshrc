@@ -76,21 +76,20 @@ plugins=(
   gradle
   httpie
   nvm
-  npm 
+  npm
   sdk
   direnv
   redis-cli
-  docker 
-  docker-compose 
-  catimg 
+  docker
+  catimg
   sublime
   ripgrep
-  fzf 
-  z 
+  fzf
+  z
   kubectl
   kube-ps1
   helm
-  zsh-syntax-highlighting 
+  zsh-syntax-highlighting
   zsh-autosuggestions
 )
 

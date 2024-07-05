@@ -9,6 +9,11 @@ alias o='open .'
 alias ms="mcs search"
 
 ###########################################################
+# docker
+alias dcud='docker compose up -d'
+alias dcd='docker compose down'
+
+###########################################################
 # trans alias
 alias tren="trans en:ru"
 alias trru="trans ru:en"
@@ -20,7 +25,7 @@ alias trru="trans ru:en"
 alias ypl="yc config profile list"
 alias ypa="yc config profile activate"
 
-# 
+#
 alias ycl="yc resource-manager cloud list"
 alias yfl="yc resource-manager folder list"
 
