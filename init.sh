@@ -23,6 +23,7 @@ brew install nvm
 brew install speedtest-cli wifi-password
 brew install vnc-viewer
 brew install nmap
+brew install mtr
 brew install python pyenv
 brew install redis
 brew install lazygit
