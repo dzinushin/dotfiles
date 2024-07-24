@@ -83,7 +83,6 @@ plugins=(
   docker
   catimg
   sublime
-  ripgrep
   fzf
   z
   kubectl
