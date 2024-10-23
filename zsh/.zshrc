@@ -154,6 +154,8 @@ if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-clo
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/vault vault
 
+autoload -U compinit; compinit
+
 # gh
 eval "$(gh copilot alias -- zsh)"
 
