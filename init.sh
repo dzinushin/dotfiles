@@ -40,7 +40,7 @@ brew tap kardolus/chatgpt-cli && brew install chatgpt-cli
 brew install translate-shell
 
 # clouds
-#brew install yandex-cloud-cli
+brew install yandex-cloud-cli
 
 # k8s staff
 brew install kubectl
@@ -72,8 +72,8 @@ brew install google-chrome
 brew install firefox
 #brew install 1password
 #brew install 1password-cli
-brew install raycast
-brew install obsidian
+#brew install raycast
+#brew install obsidian
 #brew install hiddenbar
 brew install jordanbaird-ice
 
@@ -106,7 +106,7 @@ brew install vlc
 brew install android-file-transfer
 
 # raspberry pi staff
-brew install raspberry-pi-imager
+#brew install raspberry-pi-imager
 
 # jwt staff
 brew install mike-engel/jwt-cli/jwt-cli
