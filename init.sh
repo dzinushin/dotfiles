@@ -60,7 +60,7 @@ brew install visual-studio-code
 brew install sublime-text
 brew install keepassxc
 brew install slack
-brew install robo-3t
+#brew install robo-3t
 brew install dbeaver-community
 brew install transmission-cli
 #brew install rectangle
