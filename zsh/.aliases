@@ -11,10 +11,14 @@ alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 
 ###########################################################
 # docker
+alias dvls='docker volume ls'
 alias dcu='docker compose up'
 alias dcud='docker compose up -d'
 alias dcd='docker compose down'
+alias dcdv='docker compose down -v'
+alias dcrm='docker compose rm'
 alias dcps='docker compose ps'
+
 
 ###########################################################
 # trans alias
