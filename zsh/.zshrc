@@ -157,7 +157,7 @@ complete -o nospace -C /opt/homebrew/bin/vault vault
 autoload -U compinit; compinit
 
 # gh
-eval "$(gh copilot alias -- zsh)"
+#eval "$(gh copilot alias -- zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
