@@ -19,7 +19,7 @@ brew install ht-rust
 brew install jq yq jless
 brew install xq
 brew install fzf
-brew install nvm 
+brew install nvm
 brew install speedtest-cli wifi-password
 brew install vnc-viewer
 brew install nmap
@@ -51,7 +51,7 @@ brew install krew
 brew install minikube
 brew install helm
 
-# 
+#
 brew install mkcert
 
 # casks
@@ -126,7 +126,7 @@ brew install font-jetbrains-mono
 brew install font-iosevka
 
 # install python
-PYVER="3.12.3" 
+PYVER="3.12.3"
 pyenv install --skip-existing $PYVER && pyenv global $PYVER
 
 
@@ -145,3 +145,4 @@ stow bindir -t $HOME
 stow vim -t $HOME
 stow tmux -t $HOME
 stow mongo -t $HOME
+stow ghostty -t $HOME/.config

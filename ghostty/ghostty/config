@@ -1,0 +1,12 @@
+# brew install duti
+# osascript -e 'id of app "Zed"'
+# duti -s dev.zed.Zed public.plain-text all
+
+font-size = 16
+mouse-hide-while-typing = true
+#cursor-style = block
+window-width = 160
+window-height = 50
+window-decoration = true
+#window-padding-x = 2
+#window-padding-y = 2
