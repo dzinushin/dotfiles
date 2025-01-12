@@ -9,8 +9,10 @@ brew install gh
 brew install stow
 brew install direnv
 brew install macvim mc
+brew install nvim
 brew install go
 brew install tmux
+brew install moar
 brew install ag fd bat eza tree watch p7zip tldr htop
 brew install duf
 brew install rg
@@ -133,6 +135,7 @@ pyenv install --skip-existing $PYVER && pyenv global $PYVER
 # VS Code config file
 #cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/"
 
+brew install ghostty
 
 # how delete:
 #   stow -D <pkg-name> -t $HOME
@@ -146,3 +149,5 @@ stow vim -t $HOME
 stow tmux -t $HOME
 stow mongo -t $HOME
 stow ghostty -t $HOME/.config
+stow zed -t $HOME/.config/zed
+stow nvim -t $HOME/.config
