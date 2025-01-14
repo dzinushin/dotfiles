@@ -8,6 +8,7 @@
 // from the command palette or from `Zed` application menu.
 {
   "theme": "Andromeda",
-  "base_keymap": "JetBrains",
-  "buffer_font_size": 15
+  // "base_keymap": "JetBrains",
+  "buffer_font_size": 16,
+  "ui_font_size": null
 }
