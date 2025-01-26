@@ -14,7 +14,7 @@ brew install go
 brew install tmux
 brew install moar
 brew install ag fd bat eza tree watch p7zip tldr htop
-brew install duf
+brew install duf dust
 brew install rg
 brew install httpie
 brew install ht-rust
