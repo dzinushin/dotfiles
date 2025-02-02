@@ -23,6 +23,8 @@ Plugins:
 
 https://github.com/nvim-telescope/telescope.nvim
 https://github.com/nvim-treesitter/nvim-treesitter
+https://github.com/mistweaverco/kulala.nvim
+https://github.com/nvim-lualine/lualine.nvim
 
 
 
