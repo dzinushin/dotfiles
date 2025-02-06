@@ -1,14 +1,17 @@
+# https://www.reddit.com/r/Zig/comments/1hod58j/how_i_configure_ghostty/
+
 # brew install duti
 # osascript -e 'id of app "Zed"'
 # duti -s dev.zed.Zed public.plain-text all
 
 # theme = catppuccin-mocha
+
+# font
 font-size = 16
-mouse-hide-while-typing = true
-#cursor-style = block
+
 window-width = 160
 window-height = 50
+
+mouse-hide-while-typing = true
 copy-on-select = clipboard
-window-decoration = true
-#window-padding-x = 2
-#window-padding-y = 2
+quit-after-last-window-closed = true
