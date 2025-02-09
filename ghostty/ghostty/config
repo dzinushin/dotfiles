@@ -12,6 +12,8 @@ font-size = 16
 window-width = 160
 window-height = 50
 
+
+window-inherit-working-directory = false
 mouse-hide-while-typing = true
 copy-on-select = clipboard
 quit-after-last-window-closed = true

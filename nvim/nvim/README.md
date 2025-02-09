@@ -26,6 +26,7 @@ https://github.com/nvim-treesitter/nvim-treesitter
 https://github.com/mistweaverco/kulala.nvim
 https://github.com/nvim-lualine/lualine.nvim
 
+https://github.com/stevearc/oil.nvim
 
 
 # concepts
