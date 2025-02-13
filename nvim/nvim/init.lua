@@ -12,8 +12,11 @@ vim.opt.relativenumber = true
 vim.opt.clipboard = 'unnamedplus'
 
 vim.keymap.set("n", "<leader>pv",vim.cmd.Ex)
+-- source current file
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
+-- source current line
 vim.keymap.set("n", "<leader>x", ":.lua<CR>")
+-- source current selection
 vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
 require('config.lazy')
