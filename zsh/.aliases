@@ -8,8 +8,11 @@ alias kx=kubectx
 alias o='open .'
 alias ms="mcs search"
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
+###########################################################
+# brew
 alias bu='brew upgrade && brew cleanup'
-
+alias bi='brew install'
+alias bs='brew search'
 ###########################################################
 # docker
 alias dvls='docker volume ls'

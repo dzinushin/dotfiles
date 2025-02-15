@@ -8,6 +8,15 @@ return {
     -- Telescope config
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+    vim.keymap.set('n', '<leader>ed', 
+      function()
+        local opts = {
+          cwd = "~/dotfiles"
+        }
+        builtin.find_files(opts)
+      end,
+      { desc = 'Telescope browse dofiles' }
+    )
     vim.keymap.set('n', '<leader>en', 
       function() 
  --       require("telescope").setup {
