@@ -16,6 +16,7 @@ return {
     },
     config = function()
       require("lspconfig").lua_ls.setup {}
+      vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end)
     end,
   }
 }

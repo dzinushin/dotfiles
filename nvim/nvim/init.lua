@@ -11,7 +11,7 @@ vim.opt.relativenumber = true
 
 vim.opt.clipboard = 'unnamedplus'
 
-vim.keymap.set("n", "<leader>pv",vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- source current file
 vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
 -- source current line
@@ -21,9 +21,17 @@ vim.keymap.set("v", "<leader>x", ":lua<CR>")
 
 require('config.lazy')
 
+-- close help by 'q'
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "help",
+  callback = function()
+    vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = true, silent = true })
+  end,
+})
+
 
 vim.filetype.add({
-	extension = {
-		['http'] = 'http',
-	},
+  extension = {
+    ['http'] = 'http',
+  },
 })

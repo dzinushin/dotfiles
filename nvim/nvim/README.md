@@ -20,6 +20,7 @@ https://github.com/ThePrimeagen/init.lua
 
 https://github.com/IlyasYOY/dotfiles
 
+https://github.com/tjdevries/advent-of-nvim
 
 Plugins:
 
