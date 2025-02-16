@@ -132,7 +132,7 @@ brew install font-jetbrains-mono
 brew install font-iosevka
 
 # install python
-PYVER="3.13.1"
+PYVER="3.13.2"
 pyenv install --skip-existing $PYVER && pyenv global $PYVER
 
 

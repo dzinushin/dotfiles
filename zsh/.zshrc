@@ -109,6 +109,7 @@ PROMPT=$PROMPT'$(kube_ps1) '
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
