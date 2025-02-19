@@ -11,13 +11,22 @@ vim.opt.relativenumber = true
 
 vim.opt.clipboard = 'unnamedplus'
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+local km = vim.keymap
+
+km.set("n", "<leader>pv", vim.cmd.Ex)
 -- source current file
-vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
+km.set("n", "<leader><leader>x", "<cmd>source %<CR>")
 -- source current line
-vim.keymap.set("n", "<leader>x", ":.lua<CR>")
+km.set("n", "<leader>x", ":.lua<CR>")
 -- source current selection
-vim.keymap.set("v", "<leader>x", ":lua<CR>")
+km.set("v", "<leader>x", ":lua<CR>")
+
+-- Lazy
+km.set("n", "<leader>u", ":Lazy update<CR>", { desc = "Lazy Update" })
+
+km.set("n", "<leader>n", ":enew<CR>", { desc = "New buffer" })
+
+
 
 require('config.lazy')
 

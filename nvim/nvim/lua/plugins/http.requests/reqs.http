@@ -7,3 +7,6 @@ GET https://httpbin.org/uuid
 GET https://ya.ru
 
 ###
+
+GET {{serviceUrl}}/uuid
+###

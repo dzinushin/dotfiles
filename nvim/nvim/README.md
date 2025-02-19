@@ -22,6 +22,8 @@ https://github.com/IlyasYOY/dotfiles
 
 https://github.com/tjdevries/advent-of-nvim
 
+https://github.com/benfrain/neovim/tree/main
+
 Plugins:
 
 
