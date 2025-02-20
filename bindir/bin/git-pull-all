@@ -1,6 +1,15 @@
 #!/opt/homebrew/bin/bash
 
-dirs=$(fd -H -t d -g '.git')
+# find all directories containing git repo
+mapfile -t dirs < <(fd --hidden --max-depth 2 --type d --glob '.git')
+
 #echo $dirs
 
-for dir in $dirs; do (cd "$dir/.." && echo "--------------------------------------------------------" && echo $(pwd) && git pull); done
+for dir in ${dirs[@]}; do 
+  (
+    cd "$dir/.."
+    echo -e "\n---------------------------------------------------------------------------------" 
+    echo -e "$(basename $(pwd))\n" 
+    git pull
+  )
+done
