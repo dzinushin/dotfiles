@@ -49,6 +49,15 @@ help lsp
 
 # concepts
 
+Textobject (see :h text-objects)
+Operator (see h: operator)
+Dot-repeat (see h: .)
+
+
+## folds
+
+za - toggle fold
+
 ## rtp
 
 runtimepath rtp
