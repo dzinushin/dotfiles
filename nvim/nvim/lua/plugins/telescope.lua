@@ -11,7 +11,8 @@ return {
     vim.keymap.set('n', '<leader>ed',
       function()
         local opts = {
-          cwd = "~/dotfiles"
+          cwd = "~/dotfiles",
+          hidden = true
         }
         builtin.find_files(opts)
       end,
