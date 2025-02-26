@@ -8,7 +8,7 @@ alias kx=kubectx
 alias o='open .'
 alias ms="mcs search"
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
-alias curl=curlie
+alias c=curlie
 ###########################################################
 # brew
 alias bu='brew upgrade && brew cleanup'
