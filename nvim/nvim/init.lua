@@ -21,9 +21,6 @@ km.set("n", "<leader>x", ":.lua<CR>")
 -- source current selection
 km.set("v", "<leader>x", ":lua<CR>")
 
--- Lazy
-km.set("n", "<leader>u", ":Lazy update<CR>", { desc = "Lazy Update" })
-
 km.set("n", "<leader>n", ":enew<CR>", { desc = "New buffer" })
 
 

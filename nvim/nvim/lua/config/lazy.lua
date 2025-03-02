@@ -27,3 +27,6 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+-- setup lazy shortcuts
+vim.keymap.set("n", "<leader>u", ":Lazy update<CR>", { desc = "Lazy Update" })
