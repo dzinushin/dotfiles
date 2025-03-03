@@ -24,6 +24,9 @@ https://github.com/tjdevries/advent-of-nvim
 
 https://github.com/benfrain/neovim/tree/main
 
+https://github.com/PakhomovAlexander/config.nvim
+https://github.com/PakhomovAlexander/config.ideavim
+
 Plugins:
 
 
