@@ -52,7 +52,19 @@ help lsp
 
 # concepts
 
+iI aA sS rR 
+wW eE
+dD y
+cC
+
 Textobject (see :h text-objects)
+
+- word
+- sentence
+- paragraph
+ci['"()[]{}wsp]
+ca[sp]
+
 Operator (see h: operator)
 Dot-repeat (see h: .)
 
