@@ -37,6 +37,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
+-- for kulala register filetype extension
 vim.filetype.add({
   extension = {
     ['http'] = 'http',

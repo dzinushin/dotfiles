@@ -4,8 +4,12 @@ return {
     keys = {"<leader>Rs", "<leader>Ra", "<leader>Ro"},
     ft = {"http", "rest"},
     opts = {
-      -- your configuration comes here
-      global_keymaps = false,
+      global_keymaps = {
+        ["View current env"] = { -- sets global mapping
+          "<leader>RE",
+          function() print("***ENV: " .. require("kulala").get_selected_env()) end,
+        },
+      },
     },
   },
 }
