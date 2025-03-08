@@ -53,15 +53,19 @@ help lsp
 # concepts
 
 iI aA sS rR 
-wW eE
 dD y
 cC
+
+Motions:
+by word: wW eE
+find symbol (forward/backward): fF{char} tT{char} next: ;/,
 
 Textobject (see :h text-objects)
 
 - word
 - sentence
 - paragraph
+
 ci['"()[]{}wsp]
 ca[sp]
 

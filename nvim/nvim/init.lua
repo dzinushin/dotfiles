@@ -14,6 +14,8 @@ vim.opt.clipboard = 'unnamedplus'
 
 local km = vim.keymap
 
+km.set("n", "<esc>", ":nohlsearch<CR>", { noremap = true, silent = true })
+
 km.set("n", "<leader>pv", vim.cmd.Ex)
 -- source current file
 km.set("n", "<leader><leader>x", "<cmd>source %<CR>")
