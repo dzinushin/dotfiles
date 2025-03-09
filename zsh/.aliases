@@ -14,6 +14,8 @@ alias c=curlie
 alias bu='brew upgrade && brew cleanup'
 alias bi='brew install'
 alias bs='brew search'
+alias blv='brew ls --versions'
+alias blvg='brew ls --versions | grep '
 ###########################################################
 # docker
 alias dvls='docker volume ls'
