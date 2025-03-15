@@ -10,6 +10,7 @@ vim.opt.expandtab = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- global yanking with the OS clipboard
 vim.opt.clipboard = 'unnamedplus'
 
 local km = vim.keymap

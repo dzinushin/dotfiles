@@ -150,8 +150,5 @@ cp git/.gitignore $HOME/
 stow zsh -t $HOME
 stow bindir -t $HOME
 stow vim -t $HOME
-stow tmux -t $HOME
 stow mongo -t $HOME
-stow ghostty -t $HOME/.config
 stow zed -t $HOME/.config/zed
-stow nvim -t $HOME/.config
