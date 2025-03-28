@@ -1,35 +1,14 @@
 --print("main init.lua")
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
-vim.opt.scrolloff = 10
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.expandtab = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-
--- global yanking with the OS clipboard
-vim.opt.clipboard = 'unnamedplus'
-
-local km = vim.keymap
-
-km.set("n", "<esc>", ":nohlsearch<CR>", { noremap = true, silent = true })
-
-km.set("n", "<leader>pv", vim.cmd.Ex)
--- source current file
-km.set("n", "<leader><leader>x", "<cmd>source %<CR>")
--- source current line
-km.set("n", "<leader>x", ":.lua<CR>")
--- source current selection
-km.set("v", "<leader>x", ":lua<CR>")
-
-km.set("n", "<leader>n", ":enew<CR>", { desc = "New buffer" })
-
-
+require("config.options")
 
 require('config.lazy')
+
+-- register extra keymaps/shortcuts
+require("config.keymaps")
+
+
+
 
 -- close help by 'q'
 vim.api.nvim_create_autocmd("FileType", {

@@ -27,6 +27,8 @@ https://github.com/benfrain/neovim/tree/main
 https://github.com/PakhomovAlexander/config.nvim
 https://github.com/PakhomovAlexander/config.ideavim
 
+https://github.com/ppcamp/nvim
+
 Plugins:
 
 

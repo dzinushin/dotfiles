@@ -7,8 +7,9 @@ return {
   config = function()
     -- Telescope config
     local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-    vim.keymap.set('n', '<leader>ed',
+    local map = vim.keymap.set
+    map('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+    map('n', '<leader>ed',
       function()
         local opts = {
           cwd = "~/dotfiles",
@@ -18,7 +19,7 @@ return {
       end,
       { desc = 'Telescope browse dofiles' }
     )
-    vim.keymap.set('n', '<leader>en',
+    map('n', '<leader>en',
       function()
         --       require("telescope").setup {
         --         pickers = {
@@ -37,8 +38,16 @@ return {
       end,
       { desc = 'Telescope browse nvim config files' }
     )
-    vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+    map('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+    map('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+    map('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+    map('n', '<leader>gb', builtin.git_branches, { desc = 'Git branches' })
+    map('n', '<leader>gc', builtin.git_commits, { desc = 'Git commits' })
+    map('n', '<leader>gs', builtin.git_status, { desc = 'Git status' })
+    map('n', '<leader>gt', builtin.git_stash, { desc = 'Git stash' })
+    map("n", "<leader>gf", ":Telescope git_files<CR>", { desc = "Git: Files" })
+
+
   end
 }
