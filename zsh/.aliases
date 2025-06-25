@@ -30,7 +30,9 @@ alias dcps='docker compose ps'
 ###########################################################
 # trans alias
 alias tren="trans en:ru"
+alias en="trans en:ru"
 alias trru="trans ru:en"
+alias ru="trans ru:en"
 
 ###########################################################
 # yc cli aliases
