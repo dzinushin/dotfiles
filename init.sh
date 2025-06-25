@@ -82,6 +82,7 @@ brew install firefox
 #brew install obsidian
 #brew install hiddenbar
 brew install jordanbaird-ice
+brew install plantuml
 
 # postgresql
 brew install postgresql
