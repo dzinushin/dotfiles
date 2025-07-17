@@ -9,7 +9,6 @@ brew install gh
 brew install stow
 brew install direnv
 brew install macvim mc
-brew install nvim
 brew install go
 brew install tmux
 brew install moar
@@ -22,17 +21,21 @@ brew install jq yq jless
 brew install xq
 brew install fzf
 brew install nvm
-brew install speedtest-cli wifi-password
+brew install speedtest-cli 
+# wifi-password
 brew install vnc-viewer
-brew install nmap
-brew install mtr
 brew install python pyenv
 brew install redis
 brew install lazygit
 brew install neofetch
-brew install gping
 # replacement for youtube-dl
 brew install yt-dlp
+
+# network tools
+brew install mtr
+brew install nmap
+brew install gping
+brew install somo
 
 # neovim
 brew install neovim
