@@ -42,8 +42,11 @@ brew install neovim
 brew install lua-language-server
 
 brew install lulu
+
+### AI tools
 # chatgpt-cli https://github.com/kardolus/chatgpt-cli
 brew tap kardolus/chatgpt-cli && brew install chatgpt-cli
+brew install aichat
 
 # translate in shell
 brew install translate-shell
