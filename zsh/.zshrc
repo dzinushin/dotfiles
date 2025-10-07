@@ -162,6 +162,14 @@ autoload -U compinit; compinit
 
 #export XDG_CONFIG_HOME="$HOME/.config"
 
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/d.zinusin/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+

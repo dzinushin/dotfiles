@@ -25,6 +25,7 @@ alias dcd='docker compose down'
 alias dcdv='docker compose down -v'
 alias dcrm='docker compose rm'
 alias dcps='docker compose ps'
+alias dctprf='docker container prune -f'
 
 
 ###########################################################
