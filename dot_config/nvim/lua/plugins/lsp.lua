@@ -15,7 +15,7 @@ return {
       },
     },
     config = function()
-      require("lspconfig").lua_ls.setup {}
+      vim.lsp.start(vim.lsp.config["lua_ls"])
       vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end)
     end,
   }
