@@ -9,6 +9,7 @@ alias o='open .'
 alias ms="mcs search"
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 alias c=curlie
+alias v=nvim
 ###########################################################
 # brew
 alias bu='brew upgrade && brew cleanup'
