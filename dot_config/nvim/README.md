@@ -51,7 +51,10 @@ https://github.com/neovim/nvim-lspconfig
 
 help lsp
 
+## sites
+
 https://vim-adventures.com
+https://learnvim.irian.to/
 
 
 # concepts
