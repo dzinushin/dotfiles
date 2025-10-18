@@ -70,26 +70,27 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   aliases
-  git
+  catimg
+  direnv
+  docker
+  fzf
   gh
+  git
   golang
   gradle
-  httpie
-  nvm
-  npm
-  sdk
-  direnv
-  redis-cli
-  docker
-  catimg
-  sublime
-  fzf
-  z
-  kubectl
-  kube-ps1
   helm
-  zsh-syntax-highlighting
+  httpie
+  kube-ps1
+  kubectl
+  npm
+  nvm
+  redis-cli
+  sdk
+  sublime
+  vi-mode
+  z
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -110,6 +111,16 @@ PROMPT=$PROMPT'$(kube_ps1) '
 #   export EDITOR='mvim'
 # fi
 export EDITOR='nvim'
+
+# Vi mode
+#bindkey -v # enable Vi keybindings
+#export KEYTIMEOUT=1
+
+# press 'v' in normal mode to launch Vim with current line
+#autoload edit-command-line
+#zle -N edit-command-line
+#bindkey -M vicmd v edit-command-line
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

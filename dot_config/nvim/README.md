@@ -29,6 +29,9 @@ https://github.com/PakhomovAlexander/config.ideavim
 
 https://github.com/ppcamp/nvim
 
+https://beacons.ai/henrymisc
+https://github.com/hendrikmi/dotfiles
+
 Plugins:
 
 
