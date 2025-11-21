@@ -147,6 +147,10 @@ pyenv install --skip-existing $PYVER && pyenv global $PYVER
 #cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/"
 
 brew install ghostty
+brew install yazi
+
+# flash iso images to USB drives/SD cards
+brew intall balenaetcher
 
 # how delete:
 #   stow -D <pkg-name> -t $HOME
