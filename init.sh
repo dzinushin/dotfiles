@@ -131,12 +131,17 @@ brew tap jwt-rs/jwt-ui && brew install jwt-ui
 #brew install mullvadvpn
 #brew install tunnelbear
 
+# video related staff
+brew install ffmpeg
+
 # install fonts
 #brew tap homebrew/cask-fonts
 brew install font-fira-code
 brew install font-monofur-nerd-font
 brew install font-jetbrains-mono
 brew install font-iosevka
+# https://github.com/ryanoasis/nerd-fonts?tab=readme-ov-file#option-2-homebrew-fonts
+brew install font-hack-nerd-font 
 
 # install python
 PYVER="3.13.3"
