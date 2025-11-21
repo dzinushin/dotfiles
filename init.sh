@@ -115,7 +115,6 @@ brew tap jzaleski/homebrew-jzaleski && brew install apg
 #  brew install cloudfoundry/tap/bosh-cli
 #  brew install cloudfoundry/tap/credhub-cli
 #fi
-brew install vlc
 brew install android-file-transfer
 
 # raspberry pi staff
@@ -133,6 +132,10 @@ brew tap jwt-rs/jwt-ui && brew install jwt-ui
 
 # video related staff
 brew install ffmpeg
+brew install vlc
+
+# pdf
+brew install poppler
 
 # install fonts
 #brew tap homebrew/cask-fonts
