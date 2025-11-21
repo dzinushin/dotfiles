@@ -148,9 +148,10 @@ pyenv install --skip-existing $PYVER && pyenv global $PYVER
 
 brew install ghostty
 brew install yazi
+brew install zoxide
 
 # flash iso images to USB drives/SD cards
-brew intall balenaetcher
+brew install balenaetcher
 
 # how delete:
 #   stow -D <pkg-name> -t $HOME
