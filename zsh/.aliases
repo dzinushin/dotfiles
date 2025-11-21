@@ -14,6 +14,7 @@ alias kc=kafkactl
 ###########################################################
 # brew
 alias bu='brew upgrade && brew cleanup'
+alias binf='brew info'
 alias bi='brew install'
 alias bs='brew search'
 alias blv='brew ls --versions'
