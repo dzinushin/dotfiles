@@ -11,6 +11,7 @@ alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 alias c=curlie
 alias v=nvim
 alias kc=kafkactl
+alias y=yazi
 ###########################################################
 # brew
 alias bu='brew upgrade && brew cleanup'

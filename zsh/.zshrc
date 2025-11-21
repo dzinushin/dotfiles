@@ -88,7 +88,7 @@ plugins=(
   sdk
   sublime
   vi-mode
-  z
+  zoxide
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
