@@ -12,24 +12,34 @@ brew install macvim mc
 brew install go
 brew install tmux
 brew install moar
-brew install ag fd bat eza tree watch p7zip tldr htop
+brew install bat eza tree watch p7zip tldr htop
 brew install duf dust
-brew install rg
 brew install httpie
 brew install ht-rust
-brew install jq yq jless
 brew install xq
-brew install fzf
 brew install nvm
 brew install speedtest-cli 
 # wifi-password
 brew install vnc-viewer
-brew install python pyenv
 brew install redis
 brew install lazygit
 brew install neofetch
 # replacement for youtube-dl
 brew install yt-dlp
+
+# search/grep/etc..
+brew install ag
+brew install fd
+brew install rg
+brew install fzf
+brew install sk # skim
+
+# python
+brew install python pyenv
+
+# json/yaml/markdown tools
+brew install jq yq jless
+brew install glow
 
 # network tools
 brew install mtr
@@ -41,6 +51,7 @@ brew install somo
 brew install neovim
 brew install lua-language-server
 
+# free firewall
 brew install lulu
 
 # Mac App Store command-line interface
