@@ -12,6 +12,10 @@ vim.opt.tabstop     = 2    -- number of spaces that a tab counts for
 vim.opt.shiftwidth  = 2    -- number of spaces to use for indentation
 vim.opt.softtabstop = 2    -- number of spaces for a tab key press
 
+opt.smarttab = true
+opt.smartindent = true
+opt.autoindent = true
+
 
 vim.opt.cursorline = true -- highlight current line
 -- vim.o.colorcolumn = "120" -- show a reference line at given position 

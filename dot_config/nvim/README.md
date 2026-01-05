@@ -32,6 +32,10 @@ https://github.com/ppcamp/nvim
 https://beacons.ai/henrymisc
 https://github.com/hendrikmi/dotfiles
 
+https://github.com/CodeOpsHQ/dotfiles
+
+https://github.com/hendrikmi/dotfiles
+
 Plugins:
 
 

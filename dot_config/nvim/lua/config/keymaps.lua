@@ -23,7 +23,7 @@ map("n", "]g", vim.diagnostic.goto_next)
 map("n", "[g", vim.diagnostic.goto_prev)
 
 
-km.set("n", "<leader>pv", vim.cmd.Ex)
+map("n", "<leader>pv", vim.cmd.Ex)
 -- source current file
 km.set("n", "<leader><leader>x", "<cmd>source %<CR>")
 -- source current line
