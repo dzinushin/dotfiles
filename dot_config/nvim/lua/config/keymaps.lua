@@ -36,5 +36,8 @@ local wk = require("which-key")
 --#region icons
 wk.add({
 	{ "<leader>g", group = "Git" },
+	{ "<leader>f", group = "Telescope find" },
+	{ "<leader>e", group = "Telescope edit known locations" },
+	{ "<leader>b", group = "Telescope file browser" },
 })
 --#endregion

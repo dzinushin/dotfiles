@@ -36,13 +36,14 @@ https://github.com/CodeOpsHQ/dotfiles
 
 https://github.com/hendrikmi/dotfiles
 
-Plugins:
-
+## Plugins
 
 https://github.com/nvim-telescope/telescope.nvim
 https://github.com/nvim-treesitter/nvim-treesitter
 https://github.com/mistweaverco/kulala.nvim https://neovim.getkulala.net/
 https://github.com/nvim-lualine/lualine.nvim
+
+https://github.com/folke/noice.nvim
 
 https://github.com/stevearc/oil.nvim
 https://github.com/kristijanhusak/vim-dadbod-ui
