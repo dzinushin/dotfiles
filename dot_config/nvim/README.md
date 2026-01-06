@@ -36,6 +36,8 @@ https://github.com/CodeOpsHQ/dotfiles
 
 https://github.com/hendrikmi/dotfiles
 
+https://github.com/radleylewis/nvim-lite
+
 ## Plugins
 
 https://github.com/nvim-telescope/telescope.nvim
