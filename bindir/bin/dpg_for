@@ -24,7 +24,8 @@ echo $app
 pwd=${dbs[$app]}
 echo "$app:$pwd"
 
-cluster_hosts="postgres-group-1.dev.cian.tech:5432,postgres-group-2.dev.cian.tech:5432,postgres-group-3.dev.cian.tech:5432"
+# cluster_hosts="postgres-group-1.dev.cian.tech:5432,postgres-group-2.dev.cian.tech:5432,postgres-group-3.dev.cian.tech:5432"
+cluster_hosts="postgres-group-3.dev.cian.tech:5432"
 
 conn_str="postgresql://$app@$cluster_hosts/$app"
 echo "conn_str=\"$conn_str\""

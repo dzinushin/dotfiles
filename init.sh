@@ -61,6 +61,7 @@ brew install mas
 # chatgpt-cli https://github.com/kardolus/chatgpt-cli
 brew tap kardolus/chatgpt-cli && brew install chatgpt-cli
 brew install aichat
+brew install copilot-cli
 
 # translate in shell
 brew install translate-shell
