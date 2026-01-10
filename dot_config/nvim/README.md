@@ -40,6 +40,8 @@ https://github.com/radleylewis/nvim-lite
 
 https://github.com/adibhanna/nvim
 
+https://github.com/Sin-cy/dotfiles
+
 ## Plugins
 
 https://github.com/nvim-telescope/telescope.nvim
@@ -73,6 +75,13 @@ https://learnvim.irian.to/
 
 NeoVim Complete Setup Guide (Part 2: LSP, Linters, Formatters, AI Assist & Completion)
 https://www.youtube.com/watch?v=qp1OcolI6x0
+
+
+https://www.youtube.com/@sam_natale/videos
+
+
+The Ultimate Neovim Setup Guide From Scratch
+https://www.youtube.com/watch?v=FGVY7gbaoQI
 
 
 # concepts
