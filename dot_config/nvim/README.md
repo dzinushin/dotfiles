@@ -42,6 +42,9 @@ https://github.com/adibhanna/nvim
 
 https://github.com/Sin-cy/dotfiles
 
+https://www.youtube.com/watch?v=SSf5T8QsBYo
+https://github.com/kulinsky/min-nvim-cfg
+
 ## Plugins
 
 https://github.com/nvim-telescope/telescope.nvim
@@ -110,12 +113,6 @@ Dot-repeat (see h: .)
 ## folds
 
 za - toggle fold
-
-## rtp
-
-runtimepath rtp
-
-:h rtp
 
 
 :so :sources  -- source file

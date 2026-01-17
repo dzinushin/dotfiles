@@ -2,6 +2,12 @@ local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "enter command mode" })
 
+-- use Ctrl-HJKL convention jumps
+map("n", "<C-L>", "$")
+map("n", "<C-H>", "^")
+map("n", "<C-J>", "}")
+map("n", "<C-K>", "{")
+
 -- clear highlights on search when pressing <Esc> in normal mode
 -- see `:help hlsearch`
 map("n", "<esc>", ":nohlsearch<cr>", { noremap = true, silent = true })
