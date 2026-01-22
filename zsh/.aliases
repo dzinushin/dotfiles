@@ -1,6 +1,7 @@
 # My custom aliases
 
 #alias mcl=~/opt/bin/mc
+alias cd=z
 alias ls=eza
 alias la='ls -la'
 #alias cat='bat'
