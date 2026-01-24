@@ -76,6 +76,7 @@ plugins=(
   fzf
   gh
   git
+  gitignore
   golang
   gradle
   helm
