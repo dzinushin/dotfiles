@@ -62,6 +62,7 @@ brew install mas
 brew tap kardolus/chatgpt-cli && brew install chatgpt-cli
 brew install aichat
 brew install copilot-cli
+brew install qwen-code
 
 # translate in shell
 brew install translate-shell
