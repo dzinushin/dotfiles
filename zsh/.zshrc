@@ -136,6 +136,13 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
 
+# Source all files from local_env directory if it exists
+if [ -d "$HOME/local_env" ]; then
+  for file in "$HOME/local_env"/*; do
+    [ -f "$file" ] && source "$file"
+  done
+fi
+
 export NVM_DIR="$HOME/.nvm"
 export NVM_HOMEBREW="${HOMEBREW_PREFIX:-/usr/local}/opt/nvm"
 [ -s "${NVM_HOMEBREW}/nvm.sh" ] && . "${NVM_HOMEBREW}/nvm.sh"  # This loads nvm
