@@ -150,6 +150,9 @@ brew tap jwt-rs/jwt-ui && brew install jwt-ui
 brew install ffmpeg
 brew install vlc
 
+# qr code encoder/decoder cli tool
+brew install qrtool
+
 # pdf
 brew install poppler
 
