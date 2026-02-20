@@ -14,7 +14,7 @@ alias v=nvim
 alias kc=kafkactl
 alias y=yazi
 alias t=tmux
-alias ta=tmux att
+alias ta='tmux att'
 ###########################################################
 # brew
 alias bu='brew update && brew upgrade && brew cleanup'
