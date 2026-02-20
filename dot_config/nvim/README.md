@@ -20,6 +20,8 @@ https://github.com/ThePrimeagen/init.lua
 
 https://github.com/IlyasYOY/dotfiles
 
+https://github.com/adibhanna/nvim
+
 https://github.com/tjdevries/advent-of-nvim
 
 https://github.com/benfrain/neovim/tree/main
