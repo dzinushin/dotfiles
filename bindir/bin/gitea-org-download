@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+# gitea-org-download — clone all repositories of a Gitea organization
+# Usage: gitea-org-download <org> [target-dir]
+#
+# Reads connection settings from the tea CLI config.
+# Skips repositories that already exist in the target directory.
+
+set -euo pipefail
+
+usage() {
+  echo "Usage: $(basename "$0") <org> [target-dir]"
+  echo ""
+  echo "  <org>         Gitea organisation name"
+  echo "  [target-dir]  Directory to clone into (default: current directory)"
+  echo ""
+  echo "Options:"
+  echo "  -h, --help    Show this help"
+  exit 0
+}
+
+die() { echo "ERROR: $*" >&2; exit 1; }
+
+# ── args ───────────────────────────────────────────────────────────────────────
+
+[[ "${1:-}" == "-h" || "${1:-}" == "--help" ]] && usage
+[[ $# -lt 1 ]] && usage
+
+ORG="$1"
+TARGET_DIR="${2:-.}"
+
+# ── read tea config ────────────────────────────────────────────────────────────
+
+TEA_CONFIG=""
+for candidate in \
+    "${HOME}/.config/tea/config.yml" \
+    "${HOME}/Library/Application Support/tea/config.yml"; do
+  [[ -f "$candidate" ]] && TEA_CONFIG="$candidate" && break
+done
+[[ -z "$TEA_CONFIG" ]] && die "tea config not found. Install tea and run 'tea login add'."
+
+parse_field() {
+  python3 - "$TEA_CONFIG" "$1" <<'PY'
+import sys, re
+with open(sys.argv[1]) as f: txt = f.read()
+m = re.search(r'^\s+' + sys.argv[2] + r':\s+(\S+)', txt, re.M)
+print(m.group(1).rstrip('/') if m else '')
+PY
+}
+
+GITEA_URL=$(parse_field url)
+TOKEN=$(parse_field token)
+SSH_KEY=$(parse_field ssh_key)
+
+[[ -z "$GITEA_URL" ]] && die "Could not read 'url' from tea config."
+[[ -z "$TOKEN"     ]] && die "Could not read 'token' from tea config."
+
+# ── fetch repository list ──────────────────────────────────────────────────────
+
+mkdir -p "$TARGET_DIR"
+
+echo "Gitea : $GITEA_URL"
+echo "Org   : $ORG"
+echo "Target: $(realpath "$TARGET_DIR")"
+echo ""
+
+REPOS=()
+PAGE=1
+while true; do
+  RESPONSE=$(curl -sf \
+    -H "Authorization: token $TOKEN" \
+    "${GITEA_URL}/api/v1/orgs/${ORG}/repos?limit=50&page=${PAGE}") \
+    || die "Failed to reach Gitea API at $GITEA_URL"
+  BATCH=$(echo "$RESPONSE" | python3 -c \
+    "import json,sys; data=json.load(sys.stdin); [print(r['name']+'|'+r['ssh_url']) for r in data]")
+  [[ -z "$BATCH" ]] && break
+  while IFS= read -r line; do REPOS+=("$line"); done <<< "$BATCH"
+  (( PAGE++ ))
+done
+
+TOTAL=${#REPOS[@]}
+[[ $TOTAL -eq 0 ]] && die "No repositories found for org '$ORG'. Check org name and token permissions."
+echo "Found $TOTAL repositories."
+echo ""
+
+# ── clone ──────────────────────────────────────────────────────────────────────
+
+GIT_SSH_CMD="ssh -o StrictHostKeyChecking=no"
+[[ -n "$SSH_KEY" && -f "$SSH_KEY" ]] && GIT_SSH_CMD="ssh -i $SSH_KEY -o StrictHostKeyChecking=no"
+
+CLONED=0; SKIPPED=0; FAILED=0
+# NOTE: (( VAR++ )) exits with code 1 when VAR==0 under set -e, so use += 1
+
+
+for entry in "${REPOS[@]}"; do
+  NAME="${entry%%|*}"
+  echo "<<<< NAME: $NAME"
+  URL="${entry##*|}"
+  DEST="${TARGET_DIR}/${NAME}"
+
+  if [[ -d "$DEST" ]]; then
+    echo "SKIP  $NAME"
+    SKIPPED=$((SKIPPED + 1))
+    continue
+  fi
+
+  echo -n "CLONE $NAME ... "
+  if output=$(GIT_SSH_COMMAND="$GIT_SSH_CMD" git clone "$URL" "$DEST" 2>&1); then
+    if echo "$output" | grep -q "empty repository"; then
+      echo "done (empty repo)"
+    else
+      echo "done"
+    fi
+    CLONED=$((CLONED + 1))
+  else
+    echo "FAILED"
+    echo "      $output" >&2
+    FAILED=$((FAILED + 1))
+  fi
+done
+
+# ── summary ────────────────────────────────────────────────────────────────────
+
+echo ""
+echo "────────────────────────────"
+echo "Cloned : $CLONED"
+echo "Skipped: $SKIPPED  (already exist)"
+[[ $FAILED -gt 0 ]] && echo "Failed : $FAILED" && exit 1
+echo "────────────────────────────"
