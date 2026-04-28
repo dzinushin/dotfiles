@@ -88,6 +88,7 @@ plugins=(
   redis-cli
   sdk
   sublime
+  ssh
   vi-mode
   zoxide
   zsh-autosuggestions
