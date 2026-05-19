@@ -110,6 +110,7 @@ brew install plantuml
 brew install postgresql
 brew install pgcli
 brew install pgadmin4
+brew install --cask pgen
 
 # kafka
 brew install kcat

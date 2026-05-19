@@ -56,7 +56,8 @@ fi
 
 #echo ">>>>>>>> $app $login:$pwd $url"
 
-conn_str="postgresql://$login@$url/$app?ssl=true&sslmode=verify-full&target_session_attrs=read-write"
+conn_str="postgresql://$login@$url/$app"
+#conn_str="postgresql://$login@$url/$app?ssl=true&sslmode=verify-full&target_session_attrs=read-write"
 
 # echo "conn_str=\"$conn_str\""
 echo ">>>>>>> conn_str=\"$conn_str\""
