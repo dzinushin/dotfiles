@@ -73,7 +73,6 @@ plugins=(
   catimg
   direnv
   docker
-  fzf
   gh
   git
   gitignore
@@ -90,6 +89,7 @@ plugins=(
   sublime
   ssh
   vi-mode
+  fzf
   zoxide
   zsh-autosuggestions
   zsh-syntax-highlighting
