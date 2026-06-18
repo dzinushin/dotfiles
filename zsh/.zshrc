@@ -88,7 +88,6 @@ plugins=(
   ssh
   vi-mode
   fzf
-  zoxide
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -166,4 +165,9 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+# zoxide: init в самом конце конфига (требование zoxide doctor — после всех хуков chpwd/precmd)
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+fi
 
