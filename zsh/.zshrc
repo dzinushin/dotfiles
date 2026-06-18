@@ -82,8 +82,6 @@ plugins=(
   httpie
   kube-ps1
   kubectl
-  npm
-  nvm
   redis-cli
   sdk
   sublime
@@ -94,6 +92,12 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
+
+# отключаем авто-проверку обновлений oh-my-zsh (ускоряет старт)
+zstyle ':omz:update' mode disabled
+
+# docker CLI completions — добавляем в fpath до compinit внутри oh-my-zsh.sh
+fpath=(/Users/d.zinusin/.docker/completions $fpath)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,49 +149,19 @@ if [ -d "$HOME/local_env" ]; then
   done
 fi
 
-export NVM_DIR="$HOME/.nvm"
-export NVM_HOMEBREW="${HOMEBREW_PREFIX:-/usr/local}/opt/nvm"
-[ -s "${NVM_HOMEBREW}/nvm.sh" ] && . "${NVM_HOMEBREW}/nvm.sh"  # This loads nvm
-
 export PATH=~/bin:$PATH
 
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 export PATH=${HOME}/.krew/bin:$PATH
 
-if command -v pyenv 1>/dev/null 2>&1; then
+# pyenv: современная инициализация (явный shell + --no-rehash убирает медленный скан shims)
+if command -v pyenv >/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
-  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-#  export PYENV_VERSION="3.11.1"
+  # $PYENV_ROOT/bin есть только при git-clone установке; при Homebrew бинарь в /opt/homebrew/bin
+  [[ -d "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init - --no-rehash zsh)"
 fi
-
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-
-# The next line updates PATH for Yandex Cloud CLI.
-if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
-# The next line enables shell command completion for yc.
-if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
-
-# Google Cloud SDK
-#[ -s "${HOMEBREW_PREFIX:-/usr/local}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ] && source "${HOMEBREW_PREFIX:-/usr/local}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-#[ -s "${HOMEBREW_PREFIX:-/usr/local}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" ] && source "${HOMEBREW_PREFIX:-/usr/local}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/vault vault
-
-autoload -U compinit; compinit
-
-# gh
-#eval "$(gh copilot alias -- zsh)"
-
-#export XDG_CONFIG_HOME="$HOME/.config"
-
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/d.zinusin/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
