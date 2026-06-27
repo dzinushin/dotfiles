@@ -1,0 +1,188 @@
+#!/usr/bin/env bash
+#
+# sdk-prune — удаляет старые версии кандидатов sdkman.
+#
+# Обычные кандидаты (gradle, kotlin, maven, ...): оставляем N самых свежих версий.
+# java — особый случай: группируем по мажорной линейке (мажор + вендор) и в каждой
+#        группе оставляем только самую свежую минорную, удаляя устаревшие минорные.
+# Активная (current) версия не удаляется никогда.
+#
+# Использование:
+#   sdk-prune [опции] <кандидат> [<кандидат> ...]
+#   sdk-prune [опции] all          # обработать все установленные кандидаты
+#
+# Опции:
+#   -k, --keep N     для обычных кандидатов: сколько свежих версий оставить (по умолчанию 1)
+#   -n, --dry-run    только показать, что будет удалено, без удаления
+#   -y, --yes        не спрашивать подтверждение
+#   -h, --help       эта справка
+#
+# Примеры:
+#   sdk-prune gradle               # оставить самую свежую версию gradle + активную
+#   sdk-prune -k 2 gradle kotlin   # оставить 2 свежих версии gradle и kotlin
+#   sdk-prune java                 # по java: одна свежая минорная на каждую мажорную линейку
+#   sdk-prune -n all               # сухой прогон по всем кандидатам
+
+set -euo pipefail
+
+SDKMAN_DIR="${SDKMAN_DIR:-$HOME/.sdkman}"
+KEEP=1
+DRY_RUN=false
+ASSUME_YES=false
+
+die() { echo "ошибка: $*" >&2; exit 1; }
+
+usage() {
+  sed -n '3,24p' "$0" | sed 's/^# \{0,1\}//'
+  exit "${1:-0}"
+}
+
+# разбор аргументов
+CANDIDATES=()
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -k|--keep)    KEEP="${2:-}"; shift 2 ;;
+    -n|--dry-run) DRY_RUN=true; shift ;;
+    -y|--yes)     ASSUME_YES=true; shift ;;
+    -h|--help)    usage 0 ;;
+    -*)           die "неизвестная опция: $1" ;;
+    *)            CANDIDATES+=("$1"); shift ;;
+  esac
+done
+
+[[ "$KEEP" =~ ^[0-9]+$ ]] || die "--keep должно быть числом, получено: $KEEP"
+[[ ${#CANDIDATES[@]} -gt 0 ]] || usage 1
+[[ -d "$SDKMAN_DIR" ]] || die "sdkman не найден в $SDKMAN_DIR"
+
+# подключаем функцию sdk (объявляется в sdkman-init.sh).
+# временно снимаем set -u: init-скрипт обращается к необъявленным переменным (ZSH_VERSION и т.п.)
+set +u
+# shellcheck disable=SC1091
+source "$SDKMAN_DIR/bin/sdkman-init.sh"
+set -u
+
+# all → все кандидаты, у которых есть каталог с версиями
+if [[ ${#CANDIDATES[@]} -eq 1 && "${CANDIDATES[0]}" == "all" ]]; then
+  CANDIDATES=()
+  for dir in "$SDKMAN_DIR/candidates"/*/; do
+    [[ -d "$dir" ]] && CANDIDATES+=("$(basename "$dir")")
+  done
+fi
+
+# активная версия кандидата (цель симлинка current), либо пусто
+current_version() {
+  local base="$1"
+  [[ -L "$base/current" ]] && basename "$(readlink "$base/current")"
+}
+
+# список установленных версий кандидата (каталоги, кроме симлинка current), отсортирован по версии
+installed_versions() {
+  local base="$1"
+  find "$base" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort -V
+}
+
+# выполнить удаление выбранных версий (с учётом dry-run и подтверждения)
+do_remove() {
+  local candidate="$1"; shift
+  local to_remove=("$@")
+
+  if [[ ${#to_remove[@]} -eq 0 ]]; then
+    echo "    нечего удалять"
+    return
+  fi
+
+  echo "    к удалению: ${to_remove[*]}"
+  [[ "$DRY_RUN" == true ]] && return
+
+  if [[ "$ASSUME_YES" != true ]]; then
+    read -r -p "    удалить эти версии? [y/N] " ans
+    [[ "$ans" =~ ^[Yy]$ ]] || { echo "    отменено"; return; }
+  fi
+
+  local v
+  for v in "${to_remove[@]}"; do
+    echo "    удаляю $candidate $v"
+    sdk uninstall "$candidate" "$v" || echo "    не удалось удалить $candidate $v"
+  done
+}
+
+# обычные кандидаты: оставить KEEP самых свежих + активную
+prune_generic() {
+  local candidate="$1"
+  local base="$SDKMAN_DIR/candidates/$candidate"
+  local current; current="$(current_version "$base")"
+
+  local versions=()
+  while IFS= read -r v; do [[ -n "$v" ]] && versions+=("$v"); done < <(installed_versions "$base")
+
+  local total=${#versions[@]}
+  echo "==> $candidate: установлено $total, активная: ${current:-нет}, оставляем свежих: $KEEP"
+
+  local keep_from=$(( total - KEEP ))
+  local to_remove=() i=0 v
+  for v in "${versions[@]}"; do
+    if [[ $i -ge $keep_from ]]; then
+      : # входит в N свежих — оставляем
+    elif [[ "$v" == "$current" ]]; then
+      echo "    оставляем $v (активная)"
+    else
+      to_remove+=("$v")
+    fi
+    i=$(( i + 1 ))
+  done
+
+  do_remove "$candidate" "${to_remove[@]}"
+}
+
+# java: в каждой мажорной линейке (мажор + вендор) оставить самую свежую минорную + активную
+prune_java() {
+  local candidate="java"
+  local base="$SDKMAN_DIR/candidates/$candidate"
+  local current; current="$(current_version "$base")"
+
+  local versions=()
+  while IFS= read -r v; do [[ -n "$v" ]] && versions+=("$v"); done < <(installed_versions "$base")
+
+  echo "==> java: установлено ${#versions[@]}, активная: ${current:-нет}, правило: свежая минорная на каждую мажорную линейку"
+
+  # для каждой группы (мажор|вендор) находим самую свежую версию (список уже отсортирован по sort -V)
+  declare -A latest_in_group
+  local v major vendor key
+  for v in "${versions[@]}"; do
+    major="${v%%.*}"                 # 17 из 17.0.19-tem
+    vendor="${v##*-}"                # tem из 17.0.19-tem (если суффикса нет — вся строка)
+    [[ "$vendor" == "$v" ]] && vendor=""
+    key="${major}|${vendor}"
+    latest_in_group["$key"]="$v"     # последняя присвоенная = самая свежая (вход отсортирован)
+  done
+
+  local to_remove=()
+  for v in "${versions[@]}"; do
+    major="${v%%.*}"
+    vendor="${v##*-}"
+    [[ "$vendor" == "$v" ]] && vendor=""
+    key="${major}|${vendor}"
+    if [[ "$v" == "${latest_in_group[$key]}" ]]; then
+      echo "    оставляем $v (свежая в линейке $major${vendor:+-$vendor})"
+    elif [[ "$v" == "$current" ]]; then
+      echo "    оставляем $v (активная)"
+    else
+      to_remove+=("$v")
+    fi
+  done
+
+  do_remove "$candidate" "${to_remove[@]}"
+}
+
+for c in "${CANDIDATES[@]}"; do
+  base="$SDKMAN_DIR/candidates/$c"
+  if [[ ! -d "$base" ]]; then
+    echo "==> пропуск: кандидат '$c' не установлен"
+    continue
+  fi
+  if [[ "$c" == "java" ]]; then
+    prune_java
+  else
+    prune_generic "$c"
+  fi
+done
