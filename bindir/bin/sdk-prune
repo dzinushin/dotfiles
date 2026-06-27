@@ -13,6 +13,7 @@
 #
 # Опции:
 #   -k, --keep N     для обычных кандидатов: сколько свежих версий оставить (по умолчанию 1)
+#   -c, --clean-empty удалять пустые каталоги-остатки кандидатов (без установленных версий)
 #   -n, --dry-run    только показать, что будет удалено, без удаления
 #   -y, --yes        не спрашивать подтверждение
 #   -h, --help       эта справка
@@ -29,11 +30,12 @@ SDKMAN_DIR="${SDKMAN_DIR:-$HOME/.sdkman}"
 KEEP=1
 DRY_RUN=false
 ASSUME_YES=false
+CLEAN_EMPTY=false
 
 die() { echo "ошибка: $*" >&2; exit 1; }
 
 usage() {
-  sed -n '3,24p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '3,25p' "$0" | sed 's/^# \{0,1\}//'
   exit "${1:-0}"
 }
 
@@ -42,6 +44,7 @@ CANDIDATES=()
 while [[ $# -gt 0 ]]; do
   case "$1" in
     -k|--keep)    KEEP="${2:-}"; shift 2 ;;
+    -c|--clean-empty) CLEAN_EMPTY=true; shift ;;
     -n|--dry-run) DRY_RUN=true; shift ;;
     -y|--yes)     ASSUME_YES=true; shift ;;
     -h|--help)    usage 0 ;;
@@ -73,6 +76,7 @@ fi
 current_version() {
   local base="$1"
   [[ -L "$base/current" ]] && basename "$(readlink "$base/current")"
+  return 0
 }
 
 # список установленных версий кандидата (каталоги, кроме симлинка current), отсортирован по версии
@@ -174,10 +178,34 @@ prune_java() {
   do_remove "$candidate" "${to_remove[@]}"
 }
 
+# удалить пустой каталог-остаток кандидата (без установленных версий). возвращает 0, если каталог удалён/обработан как пустой
+clean_empty_candidate() {
+  local candidate="$1"
+  local base="$SDKMAN_DIR/candidates/$candidate"
+
+  # есть хотя бы одна установленная версия → не пустой
+  [[ -n "$(installed_versions "$base")" ]] && return 1
+
+  echo "==> $candidate: установленных версий нет — каталог-остаток"
+  if [[ "$DRY_RUN" == true ]]; then
+    echo "    был бы удалён: $base"
+    return 0
+  fi
+  if [[ "$ASSUME_YES" != true ]]; then
+    read -r -p "    удалить пустой каталог $base? [y/N] " ans
+    [[ "$ans" =~ ^[Yy]$ ]] || { echo "    отменено"; return 0; }
+  fi
+  # rm -rf, а не rmdir: внутри может остаться битый симлинк current
+  rm -rf "$base" && echo "    удалён $base" || echo "    не удалось удалить $base"
+}
+
 for c in "${CANDIDATES[@]}"; do
   base="$SDKMAN_DIR/candidates/$c"
   if [[ ! -d "$base" ]]; then
     echo "==> пропуск: кандидат '$c' не установлен"
+    continue
+  fi
+  if [[ "$CLEAN_EMPTY" == true ]] && clean_empty_candidate "$c"; then
     continue
   fi
   if [[ "$c" == "java" ]]; then
