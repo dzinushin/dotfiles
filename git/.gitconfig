@@ -16,3 +16,5 @@
 	excludesfile = ~/.gitignore
 [pull]
 	rebase = true
+[rerere]
+	enabled = true
