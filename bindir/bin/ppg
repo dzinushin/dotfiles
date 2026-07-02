@@ -1,0 +1,177 @@
+#!/opt/homebrew/bin/bash
+#
+# ppg — мульти-окруженческий помощник подключения к PostgreSQL (расширение ppg_for).
+#
+# двухуровневый выбор: сначала окружение (prod / dev1..devN / stage / trial), потом БД.
+#
+# конфиг:
+#   ~/.config/ppg/defaults        глобальные дефолты: login, password, url, port, client
+#   ~/.config/ppg/env.d/<name>    окружение: @-директивы + список БД
+#
+# формат defaults (key = value), комментарии — строки, начинающиеся с #:
+#   login = dzinushin
+#   password =           # опц.
+#   url =                # опц., глобальный шаблон хоста
+#   port = 5432          # дописывается к host, если в нём нет ":"
+#   client = pgcli
+#
+# формат env.d/<name>:
+#   @-директивы окружения (по одной на строку):
+#     @instance <name> <host[:port]>   явный выбираемый инстанс и его endpoint
+#     @instances a-b   шорткат: развернуть окружение в <name>a..<name>b при выборе
+#     @url <tmpl>      дефолтный хост окружения (плейсхолдеры {n}, {db})
+#     @login <val>     дефолтный логин окружения (плейсхолдеры {n}, {db})
+#     @password <val>  дефолтный пароль окружения
+#   строки БД: <db> [login] [password] [url]   ('-' в колонке = наследовать дефолт)
+#
+# резолв каждого поля (первое непустое, '-' пропускается):
+#   колонка БД  >  @-директива окружения  >  глобальный дефолт
+#   для host дополнительно: колонка БД > endpoint @instance > @url > глобальный url
+# затем в значениях раскрываются плейсхолдеры {n} (номер стенда) и {db} (имя БД).
+# если логин так и пуст — берётся имя БД (как в старом .pgdb_dev, где login == сервис).
+
+set -euo pipefail
+
+CONFIG_DIR="${PPG_CONFIG_DIR:-$HOME/.config/ppg}"
+DEFAULTS_FILE="$CONFIG_DIR/defaults"
+ENV_DIR="$CONFIG_DIR/env.d"
+
+die() { echo "ppg: $*" >&2; exit 1; }
+
+trim() {
+  local s="$1"
+  s="${s#"${s%%[![:space:]]*}"}"
+  s="${s%"${s##*[![:space:]]}"}"
+  printf '%s' "$s"
+}
+
+# первое непустое значение среди аргументов ('-' считается «наследовать», т.е. пропуск)
+resolve() {
+  local v
+  for v in "$@"; do
+    [[ -z "$v" || "$v" == "-" ]] && continue
+    printf '%s' "$v"
+    return 0
+  done
+  printf ''
+}
+
+[[ -d "$ENV_DIR" ]] || die "нет каталога окружений: $ENV_DIR"
+
+# --- глобальные дефолты ---
+g_login=""; g_password=""; g_url=""; g_port="5432"; g_client="pgcli"
+if [[ -f "$DEFAULTS_FILE" ]]; then
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    [[ "$line" =~ ^[[:space:]]*# ]] && continue
+    [[ "$line" == *"="* ]] || continue
+    key="$(trim "${line%%=*}")"
+    val="$(trim "${line#*=}")"
+    case "$key" in
+      login)    g_login="$val" ;;
+      password) g_password="$val" ;;
+      url)      g_url="$val" ;;
+      port)     g_port="$val" ;;
+      client)   g_client="$val" ;;
+    esac
+  done < "$DEFAULTS_FILE"
+fi
+
+# --- список окружений: каждому выбору сопоставляем файл и (опц.) endpoint ---
+declare -a env_choices=()
+declare -A choice_file=() choice_endpoint=()
+for f in "$ENV_DIR"/*; do
+  [[ -f "$f" ]] || continue
+  name="$(basename "$f")"
+
+  # явные инстансы: @instance <name> <host[:port]>
+  has_instance=0
+  while IFS= read -r il; do
+    il="$(trim "$il")"; il="$(trim "${il#@instance}")"
+    iname="${il%%[[:space:]]*}"
+    [[ -n "$iname" ]] || continue
+    env_choices+=("$iname")
+    choice_file["$iname"]="$f"
+    choice_endpoint["$iname"]="$(trim "${il#"$iname"}")"
+    has_instance=1
+  done < <(grep -E '^[[:space:]]*@instance[[:space:]]' "$f" || true)
+  [[ "$has_instance" == 1 ]] && continue
+
+  # шорткат: @instances a-b → <name>a..<name>b
+  inst_line="$(grep -E '^[[:space:]]*@instances[[:space:]]' "$f" | head -1 || true)"
+  if [[ -n "$inst_line" ]]; then
+    range="$(awk '{print $2}' <<< "$inst_line")"
+    lo="${range%%-*}"; hi="${range##*-}"
+    if [[ "$lo" =~ ^[0-9]+$ && "$hi" =~ ^[0-9]+$ ]]; then
+      for ((i = lo; i <= hi; i++)); do
+        env_choices+=("$name$i"); choice_file["$name$i"]="$f"; choice_endpoint["$name$i"]=""
+      done
+      continue
+    fi
+  fi
+
+  # одиночное окружение
+  env_choices+=("$name"); choice_file["$name"]="$f"; choice_endpoint["$name"]=""
+done
+[[ ${#env_choices[@]} -gt 0 ]] || die "нет окружений в $ENV_DIR"
+
+sel_env="$(printf '%s\n' "${env_choices[@]}" | fzf --prompt='env> ')" || exit 1
+[[ -n "$sel_env" ]] || exit 1
+
+env_file="${choice_file[$sel_env]}"
+family="$(basename "$env_file")"
+inst_endpoint="${choice_endpoint[$sel_env]}"
+# номер стенда n = хвостовые цифры имени (для плейсхолдера {n})
+num=""; [[ "$sel_env" =~ ([0-9]+)$ ]] && num="${BASH_REMATCH[1]}"
+
+# --- разобрать файл окружения: @-директивы + список БД ---
+e_login=""; e_password=""; e_url=""
+declare -a db_names=()
+declare -A db_login=() db_password=() db_url=()
+while IFS= read -r line || [[ -n "$line" ]]; do
+  [[ "$line" =~ ^[[:space:]]*# ]] && continue
+  [[ "$line" =~ ^[[:space:]]*$ ]] && continue
+  if [[ "$line" =~ ^[[:space:]]*@ ]]; then
+    d="$(trim "$line")"; d="${d#@}"
+    dkey="${d%%[[:space:]]*}"
+    dval="$(trim "${d#"$dkey"}")"
+    case "$dkey" in
+      instance)  : ;;
+      instances) : ;;
+      login)     e_login="$dval" ;;
+      password)  e_password="$dval" ;;
+      url)       e_url="$dval" ;;
+    esac
+    continue
+  fi
+  read -r c_db c_login c_password c_url <<< "$line"
+  [[ -n "$c_db" ]] || continue
+  db_names+=("$c_db")
+  db_login["$c_db"]="${c_login:-}"
+  db_password["$c_db"]="${c_password:-}"
+  db_url["$c_db"]="${c_url:-}"
+done < "$env_file"
+
+[[ ${#db_names[@]} -gt 0 ]] || die "в окружении '$family' нет БД (файл $env_file)"
+
+sel_db="$(printf '%s\n' "${db_names[@]}" | fzf --prompt="$sel_env db> ")" || exit 1
+[[ -n "$sel_db" ]] || exit 1
+
+# --- резолв параметров подключения ---
+expand() { local s="$1"; s="${s//\{n\}/$num}"; s="${s//\{db\}/$sel_db}"; printf '%s' "$s"; }
+
+login="$(expand "$(resolve "${db_login[$sel_db]}"    "$e_login"    "$g_login")")"
+password="$(expand "$(resolve "${db_password[$sel_db]}" "$e_password" "$g_password")")"
+host="$(expand "$(resolve "${db_url[$sel_db]}" "$inst_endpoint" "$e_url" "$g_url")")"
+
+# логин по умолчанию — имя БД
+[[ -n "$login" ]] || login="$sel_db"
+# дописать порт, если хост задан без ":"
+[[ -n "$host" && "$host" != *:* ]] && host="$host:$g_port"
+
+conn_str="postgresql://$login@$host/$sel_db"
+
+echo ">>>>>>> env=$sel_env  db=$sel_db"
+echo ">>>>>>> conn_str=\"$conn_str\""
+
+export PGPASSWORD="$password"
+exec "$g_client" "$conn_str"
