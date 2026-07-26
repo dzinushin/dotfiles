@@ -138,8 +138,11 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 source ~/.aliases
-source ~/.zsh_functions
+if [ -f "$HOME/.zsh_functions" ]; then
+  source ~/.zsh_functions
+fi
 
 # Source all files from local_env directory if it exists
 if [ -d "$HOME/local_env" ]; then
