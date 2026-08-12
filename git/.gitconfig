@@ -18,3 +18,5 @@
 	rebase = true
 [rerere]
 	enabled = true
+[rebase]
+	autoStash = true
