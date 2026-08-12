@@ -151,6 +151,12 @@ if [ -d "$HOME/local_env" ]; then
   done
 fi
 
+# >>> agterm agent-status >>>
+if [ -d "$HOME/.config/agterm" ]; then
+  source $HOME/.config/agterm/agent-status/shell/integration.sh
+fi
+# <<< agterm agent-status <<<
+
 export PATH=~/bin:$PATH
 
 export GOPATH=$HOME/go
