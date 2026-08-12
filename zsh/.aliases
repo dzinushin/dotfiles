@@ -10,7 +10,8 @@ alias o='open .'
 alias ms="mcs search"
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 alias c=curlie
-alias v='nvim .'
+# без аргументов открывает nvim в текущем каталоге, с аргументами передаёт их nvim как есть
+v() { nvim "${@:-.}"; }
 alias vv=nvim
 alias kc=kafkactl
 alias y=yazi
