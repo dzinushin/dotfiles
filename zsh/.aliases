@@ -18,6 +18,14 @@ alias y=yazi
 alias t=tmux
 alias ta='tmux att'
 ###########################################################
+# claude code
+alias cl=claude
+alias clc='claude --continue'
+alias clr='claude --resume'
+# разовый вопрос без интерактива: ask как посмотреть логи пода
+ask() { claude -p "$*"; }
+
+###########################################################
 # brew
 alias bu='brew update && brew upgrade && brew cleanup'
 alias binf='brew info'
