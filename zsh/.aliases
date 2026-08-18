@@ -23,7 +23,7 @@ alias cl=claude
 alias clc='claude --continue'
 alias clr='claude --resume'
 # разовый вопрос без интерактива: ask как посмотреть логи пода
-ask() { claude -p "$*"; }
+ask() { claude --model sonnet -p "$*"; }
 
 ###########################################################
 # brew
