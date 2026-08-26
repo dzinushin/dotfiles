@@ -17,6 +17,8 @@ alias kc=kafkactl
 alias y=yazi
 alias t=tmux
 alias ta='tmux att'
+
+alias i='idea .'
 ###########################################################
 # claude code
 alias cl=claude
