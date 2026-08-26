@@ -11,9 +11,19 @@ return {
       "neovim/nvim-lspconfig",
     },
     opts = {
-      -- marksman: переходы по [[wiki-ссылкам]] и обычным ссылкам,
-      -- поиск битых ссылок, аутлайн заголовков как document symbols
-      ensure_installed = { "lua_ls", "marksman" },
+      -- набор под то, что реально правится в nvim (по v:oldfiles — markdown,
+      -- shell, dotfiles и конфиги); JVM-языки живут в IDEA, серверов под них нет.
+      -- marksman  — переходы по [[wiki-ссылкам]], поиск битых ссылок, аутлайн заголовков
+      -- bashls    — подхватывает shellcheck из PATH и показывает его диагностику
+      -- yamlls    — валидация по схемам (docker-compose, GitHub Actions, k8s)
+      ensure_installed = {
+        "lua_ls",
+        "marksman",
+        "bashls",
+        "yamlls",
+        "jsonls",
+        "taplo",
+      },
       -- mason-lspconfig 2.x сам поднимает установленные серверы через vim.lsp.enable
       automatic_enable = true,
     },
