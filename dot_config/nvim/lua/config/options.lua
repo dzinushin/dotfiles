@@ -37,13 +37,15 @@ opt.ignorecase = true -- set to ignore case
 opt.smartcase = true -- ignore case only when there's no Uppercase char
 
 
--- enable folding based on syntax
-extras.foldmethod = "expr"
-extras.foldexpr = "nvim_treesitter#foldexpr()"
--- set the default fold level (higher levels are unfolded)
-extras.foldlevel = 0
--- enable folding by default (folding is turned on when the file is opened)
-extras.foldenable = false
+-- foldmethod/foldexpr выставляются пер-буферно в config/autocmds.lua:
+-- глобальный treesitter-foldexpr ломает фолды там, где парсера нет
+extras.foldenable = true
+-- всё развёрнуто при открытии файла, но zc/za работают сразу, без :set foldenable
+extras.foldlevel = 99
+extras.foldlevelstart = 99
+-- пустой foldtext (0.10+) оставляет подсветку свёрнутой строки вместо серой заглушки
+extras.foldtext = ""
+opt.fillchars:append({ fold = " ", foldopen = "⌄", foldclose = "›", foldsep = " " })
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -52,6 +54,28 @@ extras.foldenable = false
 -- opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 
+
+-- автодополнение без плагинов (0.12): меню всплывает по мере набора,
+-- источники и их приоритет задаёт 'complete'
+opt.autocomplete = true
+-- '.' — текущий буфер, 'o' — omnifunc (на LspAttach его занимает LSP, поэтому
+-- LSP-кандидаты приходят и на голом префиксе, а не только после точки),
+-- 'w'/'b' — другие окна и буферы; ^N ограничивает число кандидатов от источника
+opt.complete = ".^10,o,w^5,b^5"
+-- noselect здесь обязателен: без него первый кандидат не показывается в меню,
+-- а вставляется в текст по мере набора ("vim." -> "vim.F"). Под 'autocomplete' он
+-- включается сам, но меню поднимает ещё и vim.lsp.completion с autotrigger —
+-- для него noselect нужно задать явно
+opt.completeopt = "menu,menuone,noselect,popup,fuzzy"
+opt.pumborder = "rounded"
+
+-- диагностика по умолчанию видна только значком в signcolumn и подчёркиванием —
+-- текст ошибки показываем под строкой с курсором (virtual_lines, 0.11)
+vim.diagnostic.config({
+  virtual_lines = { current_line = true },
+  severity_sort = true,
+  float = { border = "rounded", source = "if_many" },
+})
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)

@@ -49,7 +49,6 @@ brew install somo
 
 # neovim
 brew install neovim
-brew install lua-language-server
 
 # free firewall
 brew install lulu

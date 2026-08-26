@@ -15,8 +15,30 @@ return {
       },
     },
     config = function()
-      vim.lsp.start(vim.lsp.config["lua_ls"])
-      vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end)
+      -- на 0.11+ конфиги серверов приезжают из lsp/*.lua внутри nvim-lspconfig,
+      -- поднимать сервер руками через vim.lsp.start не нужно —
+      -- включением занимается mason-lspconfig (см. plugins/mason.lua)
+
+      -- кеймапы навешиваются только там, где сервер реально подключился
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("LspKeymaps", {}),
+        callback = function(args)
+          -- LSP-дополнение всплывает на triggerCharacters сервера (для lua это '.' и ':'),
+          -- а <C-y> применяет побочные эффекты элемента: text edits, импорты, сниппеты.
+          -- 'autocomplete' при этом отвечает за слова из буферов и окон — два механизма
+          -- дополняют друг друга и не конфликтуют
+          vim.lsp.completion.enable(true, args.data.client_id, args.buf, { autotrigger = true })
+
+          local map = function(lhs, rhs, desc)
+            vim.keymap.set("n", lhs, rhs, { buffer = args.buf, desc = desc })
+          end
+
+          map("<leader>lf", function() vim.lsp.buf.format() end, "format buffer")
+          map("<leader>lr", vim.lsp.buf.rename, "rename symbol")
+          map("<leader>la", vim.lsp.buf.code_action, "code action")
+          map("<leader>ls", require("telescope.builtin").lsp_document_symbols, "document symbols")
+        end,
+      })
     end,
-  }
+  },
 }

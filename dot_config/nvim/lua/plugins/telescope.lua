@@ -1,6 +1,9 @@
 return {
   'nvim-telescope/telescope.nvim',
-  tag = 'v0.2.1',
+  -- '*' — semver-диапазон, lazy сам берёт последний релизный тег; точный коммит
+  -- фиксирует lazy-lock.json, поэтому номер версии в конфиге не нужен.
+  -- именно version, а не tag: tag резолвится буквально как tags/<значение>
+  version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim'
   },

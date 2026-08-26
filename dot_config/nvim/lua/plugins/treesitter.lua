@@ -1,16 +1,51 @@
+-- ветка master заморожена и её API (nvim-treesitter.configs) больше не существует.
+-- на main плагин занимается только установкой парсеров: highlight/indent/folds
+-- включаются вручную — см. FileType-автокоманду в config/autocmds.lua
+local ensure_installed = {
+  "bash",
+  "c",
+  "css",
+  "diff",
+  "gitcommit",
+  "html",
+  "http",
+  "javascript",
+  "json",
+  "kotlin",
+  "lua",
+  "luadoc",
+  "markdown",
+  "markdown_inline",
+  "python",
+  "query",
+  "regex",
+  "rust",
+  "toml",
+  "vim",
+  "vimdoc",
+  "yaml",
+}
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    -- плагин не поддерживает ленивую загрузку
+    lazy = false,
     build = ":TSUpdate",
-    config = function ()
-      local configs = require("nvim-treesitter.configs")
+    config = function()
+      local ts = require("nvim-treesitter")
+      ts.setup()
 
-      configs.setup({
-        ensure_installed = { "c", "lua", "vim", "http", "vimdoc", "markdown", "markdown_inline", "query", "rust", "python", "javascript", "html", "kotlin", "json", "yaml" },
-        sync_install = false,
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
-    end
-  }
+      -- декларативного ensure_installed на main нет, доустанавливаем недостающее сами
+      local installed = ts.get_installed("parsers")
+      local missing = vim.tbl_filter(function(lang)
+        return not vim.tbl_contains(installed, lang)
+      end, ensure_installed)
+
+      if #missing > 0 then
+        ts.install(missing)
+      end
+    end,
+  },
 }
