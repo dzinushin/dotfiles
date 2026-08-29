@@ -49,6 +49,7 @@ brew install somo
 
 # neovim
 brew install neovim
+brew install tree-sitter-cli
 # не LSP-серверы, а обычные CLI-инструменты — нужны и вне редактора (CI, pre-commit).
 # bash-language-server подхватывает shellcheck из PATH и показывает его диагностику
 brew install shellcheck

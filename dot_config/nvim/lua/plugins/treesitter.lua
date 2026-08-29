@@ -43,8 +43,13 @@ return {
         return not vim.tbl_contains(installed, lang)
       end, ensure_installed)
 
-      if #missing > 0 then
+      if #missing > 0 and vim.fn.executable("tree-sitter") == 1 then
         ts.install(missing)
+      elseif #missing > 0 then
+        vim.notify(
+          "Tree-sitter parsers are missing; install tree-sitter-cli and restart Neovim",
+          vim.log.levels.ERROR
+        )
       end
     end,
   },
