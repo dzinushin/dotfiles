@@ -69,8 +69,6 @@ map("n", "]g", diag_jump(1), { desc = "next diagnostic" })
 map("n", "[g", diag_jump(-1), { desc = "prev diagnostic" })
 
 
-map("n", "<leader>pv", vim.cmd.Ex, { desc = "open file exlorer" })
-
 -- source current file
 map("n", "<leader><leader>x", "<cmd>source %<CR>")
 -- source current line
@@ -87,6 +85,7 @@ wk.add({
 	{ "<leader>f", group = "Telescope find" },
 	{ "<leader>e", group = "Telescope find in known locations" },
 	{ "<leader>b", group = "Telescope file browser" },
+	{ "<leader>p", group = "Neo-tree explorer" },
 	{ "<leader>s", group = "Split window" },
 	{ "<leader>t", group = "Tabs" },
 	{ "<leader>m", group = "Markdown" },
