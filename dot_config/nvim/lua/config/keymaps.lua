@@ -12,8 +12,9 @@ map("n", "<C-K>", "{")
 -- see `:help hlsearch`
 map("n", "<esc>", ":nohlsearch<cr>", { noremap = true, silent = true })
 
--- save on Ctrl-s
-map({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr>", { silent = true })
+-- save on Ctrl-s. insert-режим намеренно не трогаем: с 0.11 <C-s> там
+-- дефолтный маппинг на vim.lsp.buf.signature_help()
+map({ "n", "v" }, "<C-s>", "<cmd>w<cr>", { silent = true })
 
 -- ходьба по меню автодополнения. принять элемент — <C-y>: только он применяет
 -- импорты, text edits и сниппеты. дефолтный прыжок по активному сниппету не теряем
@@ -41,9 +42,10 @@ end, { expr = true, silent = true, desc = "prev completion item" })
 map("n", "<leader>n", ":enew<CR>", { desc = "new buffer" })
 map("n", "<C-q>", ":bd<cr>", { silent = true, desc = "delete buffer" })
 
--- swith buffers by Tab/Shift-Tab
-map("n", "<Tab>", ":bnext<cr>", { silent = true })
-map("n", "<S-Tab>", ":bprevious<cr>", { silent = true })
+-- переключение буферов — нативные ]b/[b и ]B/[B (первый/последний) из 0.11,
+-- со счётчиком: 3]b прыгает через три буфера. своих маппингов не держим:
+-- <Tab> в normal нельзя (в терминале без CSI-u это тот же байт, что <C-i>,
+-- и прыжок вперёд по jumplist пропадает), а <S-h>/<S-l> заняли бы H/L
 
 -- windows managment
 map('n',"<leader>sh",":split<CR>", { desc = "split window horizontally" })

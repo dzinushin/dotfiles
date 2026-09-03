@@ -66,15 +66,21 @@ opt.complete = ".^10,o,w^5,b^5"
 -- а вставляется в текст по мере набора ("vim." -> "vim.F"). Под 'autocomplete' он
 -- включается сам, но меню поднимает ещё и vim.lsp.completion с autotrigger —
 -- для него noselect нужно задать явно
-opt.completeopt = "menu,menuone,noselect,popup,fuzzy"
+-- nearest (0.12) сортирует кандидатов по близости к курсору
+opt.completeopt = "menu,menuone,noselect,popup,fuzzy,nearest"
 opt.pumborder = "rounded"
+opt.pummaxwidth = 60
+
+-- одна рамка на все плавающие окна: hover, signature help, диагностика, floats плагинов.
+-- задавать border в каждом vim.diagnostic/lsp-вызове больше не нужно
+opt.winborder = "rounded"
 
 -- диагностика по умолчанию видна только значком в signcolumn и подчёркиванием —
 -- текст ошибки показываем под строкой с курсором (virtual_lines, 0.11)
 vim.diagnostic.config({
   virtual_lines = { current_line = true },
   severity_sort = true,
-  float = { border = "rounded", source = "if_many" },
+  float = { source = "if_many" },
 })
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),

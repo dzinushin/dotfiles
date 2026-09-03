@@ -30,13 +30,15 @@ return {
           vim.lsp.completion.enable(true, args.data.client_id, args.buf, { autotrigger = true })
 
           local map = function(lhs, rhs, desc)
-            vim.keymap.set("n", lhs, rhs, { buffer = args.buf, desc = desc })
+            vim.keymap.set("n", lhs, rhs, { buf = args.buf, desc = desc })
           end
 
           map("<leader>lf", function() vim.lsp.buf.format() end, "format buffer")
           map("<leader>lr", vim.lsp.buf.rename, "rename symbol")
           map("<leader>la", vim.lsp.buf.code_action, "code action")
-          map("<leader>ls", require("telescope.builtin").lsp_document_symbols, "document symbols")
+          map("<leader>ls", function()
+            require("telescope.builtin").lsp_document_symbols()
+          end, "document symbols")
         end,
       })
     end,

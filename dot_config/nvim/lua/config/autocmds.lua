@@ -3,7 +3,7 @@
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "help",
   callback = function()
-    vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "q", "<cmd>q<CR>", { buf = 0, silent = true })
   end,
 })
 
@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.foldcolumn = "auto:1"
 
     local map = function(lhs, rhs)
-      vim.keymap.set({ "n", "x" }, lhs, rhs, { expr = true, buffer = buf, silent = true })
+      vim.keymap.set({ "n", "x" }, lhs, rhs, { expr = true, buf = buf, silent = true })
     end
     map("j", "v:count == 0 ? 'gj' : 'j'")
     map("k", "v:count == 0 ? 'gk' : 'k'")
@@ -78,9 +78,9 @@ vim.api.nvim_create_autocmd("FileType", {
     local heading = [[^#\{1,6}\s]]
     vim.keymap.set("n", "]]", function()
       vim.fn.search(heading, "W")
-    end, { buffer = buf, desc = "next markdown heading" })
+    end, { buf = buf, desc = "next markdown heading" })
     vim.keymap.set("n", "[[", function()
       vim.fn.search(heading, "bW")
-    end, { buffer = buf, desc = "prev markdown heading" })
+    end, { buf = buf, desc = "prev markdown heading" })
   end,
 })

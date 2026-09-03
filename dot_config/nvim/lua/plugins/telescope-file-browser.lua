@@ -4,6 +4,7 @@ return {
     "nvim-telescope/telescope.nvim", 
     "nvim-lua/plenary.nvim" 
   },
+  keys = { '<leader>bf' },
   config = function()
     local map = vim.keymap.set
 

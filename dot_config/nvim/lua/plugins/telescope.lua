@@ -1,11 +1,16 @@
 return {
   'nvim-telescope/telescope.nvim',
-  -- '*' — semver-диапазон, lazy сам берёт последний релизный тег; точный коммит
-  -- фиксирует lazy-lock.json, поэтому номер версии в конфиге не нужен.
-  -- именно version, а не tag: tag резолвится буквально как tags/<значение>
-  version = '*',
+  -- без version: последний релизный тег (v0.2.2) — сентябрь 2024, то есть старше
+  -- и 0.11, и 0.12; разработка идёт в master, точный коммит фиксирует lazy-lock.json
   dependencies = {
     'nvim-lua/plenary.nvim'
+  },
+  cmd = 'Telescope',
+  -- маппинги ставит config, здесь только триггеры загрузки
+  keys = {
+    '<leader>ff', '<leader>fr', '<leader>fg', '<leader>fb', '<leader>fh',
+    '<leader>ed', '<leader>en',
+    '<leader>gb', '<leader>gc', '<leader>gs', '<leader>gt', '<leader>gf',
   },
   config = function()
     -- Telescope config
