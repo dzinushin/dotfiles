@@ -13,6 +13,7 @@ alias c=curlie
 # без аргументов открывает nvim в текущем каталоге, с аргументами передаёт их nvim как есть
 v() { nvim "${@:-.}"; }
 alias vv=nvim
+alias lg=lazygit
 alias kc=kafkactl
 alias y=yazi
 alias t=tmux
