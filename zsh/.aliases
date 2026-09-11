@@ -18,6 +18,7 @@ alias kc=kafkactl
 alias y=yazi
 alias t=tmux
 alias ta='tmux att'
+alias tree='tree -a -I .git'
 
 alias i='idea .'
 ###########################################################
