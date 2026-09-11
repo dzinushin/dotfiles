@@ -1,6 +1,8 @@
 
 -- close help by 'q'
+local help_group = vim.api.nvim_create_augroup("HelpQuit", {})
 vim.api.nvim_create_autocmd("FileType", {
+  group = help_group,
   pattern = "help",
   callback = function()
     vim.keymap.set("n", "q", "<cmd>q<CR>", { buf = 0, silent = true })

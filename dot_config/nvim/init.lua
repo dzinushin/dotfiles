@@ -15,11 +15,3 @@ require('config.lazy')
 require("config.keymaps")
 
 require("config.autocmds")
-
-
--- for kulala register filetype extension
-vim.filetype.add({
-  extension = {
-    ['http'] = 'http',
-  },
-})

@@ -42,7 +42,9 @@ return {
       },
       pickers = {
         find_files = {
-          file_ignore_patterns = { '.git', 'node_modules', '.vend' },
+          -- lua-паттерн, не глоб: точку экранируем, слэш привязывает к каталогу.
+          -- нужен только из-за hidden = true; остальное отсекает .gitignore через fd
+          file_ignore_patterns = { '%.git/' },
           hidden = true,
         },
         buffers = {
@@ -54,12 +56,12 @@ return {
             }
           }
         },
-      },
-      live_grep = {
-        file_ignore_patterns = { 'node_modules', '.git', '.venv' },
-        additional_args = function(_)
-          return { '--hidden' }
-        end,
+        live_grep = {
+          file_ignore_patterns = { '%.git/' },
+          additional_args = function(_)
+            return { '--hidden' }
+          end,
+        },
       },
     }
 
