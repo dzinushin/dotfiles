@@ -2,19 +2,21 @@ local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "enter command mode" })
 
--- use Ctrl-HJKL convention jumps
-map("n", "<C-L>", "$")
-map("n", "<C-H>", "^")
-map("n", "<C-J>", "}")
-map("n", "<C-K>", "{")
+-- use Ctrl-HJKL convention jumps.
+-- <C-L> при этом теряет дефолт (redraw + nohlsearch); nohlsearch перевешен на <esc>,
+-- а перерисовка осталась за :redraw!
+map("n", "<C-L>", "$", { desc = "end of line" })
+map("n", "<C-H>", "^", { desc = "first non-blank" })
+map("n", "<C-J>", "}", { desc = "next paragraph" })
+map("n", "<C-K>", "{", { desc = "prev paragraph" })
 
 -- clear highlights on search when pressing <Esc> in normal mode
 -- see `:help hlsearch`
-map("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true, silent = true })
+map("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = "clear search highlight" })
 
 -- save on Ctrl-s. insert-режим намеренно не трогаем: с 0.11 <C-s> там
 -- дефолтный маппинг на vim.lsp.buf.signature_help()
-map({ "n", "v" }, "<C-s>", "<cmd>w<cr>", { silent = true })
+map({ "n", "v" }, "<C-s>", "<cmd>w<cr>", { desc = "save file" })
 
 -- ходьба по меню автодополнения. принять элемент — <C-y>: только он применяет
 -- импорты, text edits и сниппеты. дефолтный прыжок по активному сниппету не теряем
@@ -39,8 +41,8 @@ map("i", "<S-Tab>", function()
 end, { expr = true, silent = true, desc = "prev completion item" })
 
 -- buffers
-map("n", "<leader>n", ":enew<CR>", { desc = "new buffer" })
-map("n", "<C-q>", ":bd<cr>", { silent = true, desc = "delete buffer" })
+map("n", "<leader>n", "<cmd>enew<cr>", { desc = "new buffer" })
+map("n", "<C-q>", "<cmd>bd<cr>", { desc = "delete buffer" })
 
 -- переключение буферов — нативные ]b/[b и ]B/[B (первый/последний) из 0.11,
 -- со счётчиком: 3]b прыгает через три буфера. своих маппингов не держим:
@@ -48,12 +50,10 @@ map("n", "<C-q>", ":bd<cr>", { silent = true, desc = "delete buffer" })
 -- и прыжок вперёд по jumplist пропадает), а <S-h>/<S-l> заняли бы H/L
 
 -- windows managment
-map('n',"<leader>sh",":split<CR>", { desc = "split window horizontally" })
-map('n',"<leader>sv",":vsplit<CR>", { desc = "split window vertically" })
-map('n',"<leader>si",":resize +2<CR>", { desc = "increase window height" })
-map('n',"<leader>sd",":resize -2<CR>", { desc = "decrease window height" })
--- map('n',"<leader>s",":vertical resize +2<CR>", { desc = "increase window width" })
--- map('n',"<leader>s",":vertical resize -2<CR>", { desc = "decrease window width" })
+map("n", "<leader>sh", "<cmd>split<cr>", { desc = "split window horizontally" })
+map("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "split window vertically" })
+map("n", "<leader>si", "<cmd>resize +2<cr>", { desc = "increase window height" })
+map("n", "<leader>sd", "<cmd>resize -2<cr>", { desc = "decrease window height" })
 
 -- прыжки по диагностике. дублируют нативные ]d/[d из 0.11, оставлены как привычка.
 -- opts.float депрекейтнут (удалят в 0.14) — всплывающее окно поднимаем через on_jump
@@ -70,12 +70,11 @@ end
 map("n", "]g", diag_jump(1), { desc = "next diagnostic" })
 map("n", "[g", diag_jump(-1), { desc = "prev diagnostic" })
 
+map("n", "<leader><leader>x", "<cmd>source %<cr>", { desc = "source current file" })
+map("n", "<leader>x", "<cmd>.lua<cr>", { desc = "source current line" })
+-- в visual остаётся `:`: он сам подставляет диапазон '<,'>, а <cmd> — нет
+map("v", "<leader>x", ":lua<cr>", { desc = "source selection" })
 
--- source current file
-map("n", "<leader><leader>x", "<cmd>source %<CR>")
--- source current line
-map("n", "<leader>x", ":.lua<CR>")
--- source current selection
-map("v", "<leader>x", ":lua<CR>")
+map("n", "<leader>u", "<cmd>Lazy update<cr>", { desc = "Lazy update" })
 
 -- группы леадер-префиксов объявлены в спеке which-key (plugins/which-key.lua)

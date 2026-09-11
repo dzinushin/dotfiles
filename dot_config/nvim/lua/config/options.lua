@@ -3,7 +3,7 @@ vim.g.maplocalleader = " "
 
 vim.o.scrolloff = 10 -- minimal number of screen lines to keep above and below the cursor.
 
--- indenation options
+-- indentation options
 vim.o.expandtab   = true -- use spaces instead of tabs
 vim.o.tabstop     = 2    -- number of spaces that a tab counts for
 vim.o.shiftwidth  = 2    -- number of spaces to use for indentation
@@ -17,7 +17,6 @@ vim.o.autoindent = true
 
 
 vim.o.cursorline = true -- highlight current line
--- vim.o.colorcolumn = "120" -- show a reference line at given position
 vim.o.showmode = false -- don't show the mode, since it's already in the status line
 
 -- колонка знаков всегда на месте: иначе значки mini.diff и диагностики
@@ -57,13 +56,6 @@ vim.o.foldtext = ""
 -- через vim.o пришлось бы переписывать всю строку fillchars целиком
 vim.opt.fillchars:append({ fold = " ", foldopen = "⌄", foldclose = "›", foldsep = " " })
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
--- vim.o.list = true
--- vim.o.listchars = "tab:» ,trail:·,nbsp:␣"
--- vim.o.listchars = "tab:  ,trail:·,nbsp:␣"
-
 
 -- автодополнение без плагинов (0.12): меню всплывает по мере набора,
 -- источники и их приоритет задаёт 'complete'
@@ -92,8 +84,3 @@ vim.diagnostic.config({
   severity_sort = true,
   float = { source = "if_many" },
 })
-
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
--- vim.o.confirm = true
