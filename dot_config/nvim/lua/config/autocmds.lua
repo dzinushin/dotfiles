@@ -1,10 +1,24 @@
 -- close help by 'q'
-local help_group = vim.api.nvim_create_augroup("HelpQuit", {})
+local help_group = vim.api.nvim_create_augroup("HelpWindow", {})
 vim.api.nvim_create_autocmd("FileType", {
   group = help_group,
   pattern = "help",
   callback = function(args)
     vim.keymap.set("n", "q", "<cmd>q<cr>", { buf = args.buf })
+
+    -- help открывается горизонтальным сплитом и подчиняется 'splitbelow',
+    -- из-за которого уезжает под текущее окно. возвращаем дефолтное место —
+    -- сверху на всю ширину и высотой в 'helpheight'.
+    -- условия: buftype отсекает help-файл, открытый как обычный буфер или
+    -- в превью telescope, а полная ширина — осознанный `:vert help`
+    if
+      vim.bo[args.buf].buftype == "help"
+      and vim.api.nvim_get_current_buf() == args.buf
+      and vim.api.nvim_win_get_width(0) == vim.o.columns
+    then
+      vim.cmd("wincmd K")
+      vim.cmd("resize " .. vim.o.helpheight)
+    end
   end,
 })
 
