@@ -36,6 +36,10 @@ vim.opt.clipboard = 'unnamedplus'
 opt.ignorecase = true -- set to ignore case
 opt.smartcase = true -- ignore case only when there's no Uppercase char
 
+-- история undo переживает закрытие файла; каталог (stdpath("state")/undo)
+-- nvim заводит сам
+extras.undofile = true
+
 
 -- foldmethod/foldexpr выставляются пер-буферно в config/autocmds.lua:
 -- глобальный treesitter-foldexpr ломает фолды там, где парсера нет
