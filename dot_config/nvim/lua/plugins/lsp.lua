@@ -1,19 +1,18 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      {
-        "folke/lazydev.nvim",
-        ft = "lua", -- only load on lua files
-        opts = {
-          library = {
-            -- See the configuration section for more details
-            -- Load luvit types when the `vim.uv` word is found
-            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-          },
-        },
+    -- отдельной спекой, а не в dependencies у nvim-lspconfig: зависимости lazy
+    -- грузит вместе с родителем, и ft = "lua" не срабатывал
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        -- подтянуть типы luvit, когда в файле встречается слово `vim.uv`
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
+  },
+  {
+    "neovim/nvim-lspconfig",
     config = function()
       -- на 0.11+ конфиги серверов приезжают из lsp/*.lua внутри nvim-lspconfig,
       -- поднимать сервер руками через vim.lsp.start не нужно —

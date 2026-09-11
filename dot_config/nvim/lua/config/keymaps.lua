@@ -10,7 +10,7 @@ map("n", "<C-K>", "{")
 
 -- clear highlights on search when pressing <Esc> in normal mode
 -- see `:help hlsearch`
-map("n", "<esc>", ":nohlsearch<cr>", { noremap = true, silent = true })
+map("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true, silent = true })
 
 -- save on Ctrl-s. insert-режим намеренно не трогаем: с 0.11 <C-s> там
 -- дефолтный маппинг на vim.lsp.buf.signature_help()
@@ -78,20 +78,4 @@ map("n", "<leader>x", ":.lua<CR>")
 -- source current selection
 map("v", "<leader>x", ":lua<CR>")
 
-
-local wk = require("which-key")
---#region icons
-wk.add({
-	{ "<leader>g", group = "Git" },
-	{ "<leader>gd", desc = "toggle diff overlay" },
-	{ "<leader>f", group = "Telescope find" },
-	{ "<leader>e", group = "Telescope find in known locations" },
-	{ "<leader>b", group = "Telescope file browser" },
-	{ "<leader>p", group = "Neo-tree explorer" },
-	{ "<leader>s", group = "Split window" },
-	{ "<leader>t", group = "Tabs" },
-	{ "<leader>m", group = "Markdown" },
-	{ "<leader>l", group = "LSP" },
-	{ "<leader>R", group = "REST (kulala)" },
-})
---#endregion
+-- группы леадер-префиксов объявлены в спеке which-key (plugins/which-key.lua)

@@ -13,7 +13,9 @@ vim.opt.shiftwidth  = 2    -- number of spaces to use for indentation
 vim.opt.softtabstop = 2    -- number of spaces for a tab key press
 
 opt.smarttab = true
-opt.smartindent = true
+-- smartindent намеренно не включаем: он игнорируется везде, где выставлен
+-- indentexpr (то есть во всех treesitter-филетайпах), а в остальных известен
+-- тем, что утаскивает '#' в нулевую колонку
 opt.autoindent = true
 
 
@@ -21,8 +23,9 @@ vim.opt.cursorline = true -- highlight current line
 -- vim.o.colorcolumn = "120" -- show a reference line at given position 
 vim.opt.showmode = false -- don't show the mode, since it's already in the status line
 
--- Keep signcolumn on by default
--- vim.opt.signcolumn = "yes"
+-- колонка знаков всегда на месте: иначе значки mini.diff и диагностики
+-- то появляются, то исчезают, и текст дёргается по горизонтали
+vim.opt.signcolumn = "yes"
 
 
 -- line numbering
@@ -31,6 +34,10 @@ vim.opt.relativenumber = true
 
 -- global yanking with the OS clipboard
 vim.opt.clipboard = 'unnamedplus'
+
+-- новое окно появляется там, куда смотрит взгляд: снизу и справа
+extras.splitbelow = true
+extras.splitright = true
 
 -- case-insensitive searching UNLESS \C or one or more capital letters in the search term
 opt.ignorecase = true -- set to ignore case

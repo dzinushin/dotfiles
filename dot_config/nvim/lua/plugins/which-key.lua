@@ -3,9 +3,22 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+      -- описания леадер-префиксов. живут здесь, а не в config/keymaps.lua:
+      -- иначе require("which-key") из core-конфига тянет плагин на старте,
+      -- в обход его же VeryLazy
+      spec = {
+        { "<leader>g", group = "Git" },
+        { "<leader>gd", desc = "toggle diff overlay" },
+        { "<leader>f", group = "Telescope find" },
+        { "<leader>e", group = "Telescope find in known locations" },
+        { "<leader>b", group = "Telescope file browser" },
+        { "<leader>p", group = "Neo-tree explorer" },
+        { "<leader>s", group = "Split window" },
+        { "<leader>t", group = "Tabs" },
+        { "<leader>m", group = "Markdown" },
+        { "<leader>l", group = "LSP" },
+        { "<leader>R", group = "REST (kulala)" },
+      },
     },
     keys = {
       {
