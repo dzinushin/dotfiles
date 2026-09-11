@@ -14,7 +14,6 @@ return {
         { "<leader>b", group = "Telescope file browser" },
         { "<leader>p", group = "Neo-tree explorer" },
         { "<leader>s", group = "Split window" },
-        { "<leader>t", group = "Tabs" },
         { "<leader>m", group = "Markdown" },
         { "<leader>l", group = "LSP" },
         { "<leader>R", group = "REST (kulala)" },

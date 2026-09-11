@@ -76,13 +76,9 @@ vim.api.nvim_create_autocmd("FileType", {
     map("j", "v:count == 0 ? 'gj' : 'j'")
     map("k", "v:count == 0 ? 'gk' : 'k'")
 
-    -- прыжки по заголовкам: ]] вперёд, [[ назад
-    local heading = [[^#\{1,6}\s]]
-    vim.keymap.set("n", "]]", function()
-      vim.fn.search(heading, "W")
-    end, { buf = buf, desc = "next markdown heading" })
-    vim.keymap.set("n", "[[", function()
-      vim.fn.search(heading, "bW")
-    end, { buf = buf, desc = "prev markdown heading" })
+    -- прыжки по заголовкам (]] / [[) своих не держим: ядро даёт их само —
+    -- normal из ftplugin/markdown.lua, visual из ftplugin/markdown.vim.
+    -- ядерные ловят ещё и setext-заголовки (подчёркнутые === / ---),
+    -- а свои перекрывали только normal и умели один ATX
   end,
 })
