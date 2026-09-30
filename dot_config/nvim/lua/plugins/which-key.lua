@@ -14,7 +14,6 @@ return {
       { "<leader>s", group = "Split window" },
       { "<leader>m", group = "Markdown" },
       { "<leader>l", group = "LSP" },
-      { "<leader>R", group = "REST (kulala)" },
     },
   },
   keys = {

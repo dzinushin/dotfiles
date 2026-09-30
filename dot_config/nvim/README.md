@@ -51,7 +51,6 @@ https://github.com/kulinsky/min-nvim-cfg
 
 https://github.com/nvim-telescope/telescope.nvim
 https://github.com/nvim-treesitter/nvim-treesitter
-https://github.com/mistweaverco/kulala.nvim https://neovim.getkulala.net/
 https://github.com/nvim-lualine/lualine.nvim
 
 https://github.com/folke/noice.nvim
