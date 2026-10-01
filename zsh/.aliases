@@ -31,7 +31,7 @@ ask() { claude --model sonnet -p "$*"; }
 
 ###########################################################
 # brew
-alias bu='brew update && brew upgrade && brew cleanup'
+alias bu='brew update && brew upgrade --no-ask && brew cleanup'
 alias binf='brew info'
 alias bi='brew install'
 alias bs='brew search'
