@@ -98,6 +98,9 @@ zstyle ':omz:update' mode disabled
 # docker CLI completions — добавляем в fpath до compinit внутри oh-my-zsh.sh
 fpath=(/Users/d.zinusin/.docker/completions $fpath)
 
+# Не показывать Kubernetes в промпте, пока текущий контекст не выбран.
+KUBE_PS1_HIDE_IF_NOCONTEXT=true
+
 source $ZSH/oh-my-zsh.sh
 
 PROMPT=$PROMPT'$(kube_ps1) '
