@@ -107,7 +107,8 @@ brew install firefox
 #brew install raycast
 #brew install obsidian
 #brew install hiddenbar
-brew install jordanbaird-ice
+#brew install jordanbaird-ice
+brew install --cask teddychan/tap/ice-2
 brew install plantuml
 
 # postgresql
