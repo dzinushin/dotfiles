@@ -21,6 +21,9 @@ alias ta='tmux att'
 alias tree='tree -a -I .git'
 
 alias i='idea .'
+
+alias sqlfmt='sleek -U false -i 2'
+alias sqlfmtpb='pbpaste | sqlfmt | pbcopy'
 ###########################################################
 # claude code
 alias cl=claude

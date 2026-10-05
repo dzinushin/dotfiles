@@ -125,6 +125,9 @@ brew install rs/tap/curlie
 brew install hurl
 brew install lindell/multi-gitter/multi-gitter
 
+# sql formatter
+brew install sleek
+
 # https://github.com/mongodb/homebrew-brew
 brew install mongodb/brew/mongodb-community
 
@@ -180,7 +183,7 @@ pyenv install --skip-existing $PYVER && pyenv global $PYVER
 #cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/"
 
 brew install ghostty
-brew install cmux
+# brew install cmux
 brew install yazi
 brew install zoxide
 
