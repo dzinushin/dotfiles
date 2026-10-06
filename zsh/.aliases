@@ -54,6 +54,7 @@ alias dctprf='docker container prune -f'
 
 ###########################################################
 # trans alias
+alias trans="trans -e bing"
 alias tren="trans en:ru"
 alias en="trans en:ru"
 alias ens="trans en:ru --speak"
