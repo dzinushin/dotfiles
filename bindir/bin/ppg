@@ -22,7 +22,10 @@
 #     @url <tmpl>      дефолтный хост окружения (плейсхолдеры {n}, {db})
 #     @login <val>     дефолтный логин окружения (плейсхолдеры {n}, {db})
 #     @password <val>  дефолтный пароль окружения
+#     @svc <db> <login> <password>   МКС-учётка БД (плейсхолдеры {n}, {db} в login/password)
 #   строки БД: <db> [login] [password] [url]   ('-' в колонке = наследовать дефолт)
+#
+# выбор БД в fzf: Enter — личная учётка, Ctrl-S — МКС-учётка из @svc (БД с ней помечены «svc»).
 #
 # резолв каждого поля (первое непустое, '-' пропускается):
 #   колонка БД  >  @-директива окружения  >  глобальный дефолт
@@ -126,7 +129,7 @@ num=""; [[ "$sel_env" =~ ([0-9]+)$ ]] && num="${BASH_REMATCH[1]}"
 # --- разобрать файл окружения: @-директивы + список БД ---
 e_login=""; e_password=""; e_url=""
 declare -a db_names=()
-declare -A db_login=() db_password=() db_url=()
+declare -A db_login=() db_password=() db_url=() svc_login=() svc_password=()
 while IFS= read -r line || [[ -n "$line" ]]; do
   [[ "$line" =~ ^[[:space:]]*# ]] && continue
   [[ "$line" =~ ^[[:space:]]*$ ]] && continue
@@ -140,6 +143,12 @@ while IFS= read -r line || [[ -n "$line" ]]; do
       login)     e_login="$dval" ;;
       password)  e_password="$dval" ;;
       url)       e_url="$dval" ;;
+      svc)
+        read -r s_db s_login s_password <<< "$dval"
+        [[ -n "${s_password:-}" ]] || die "в $env_file: @svc требует <db> <login> <password>: '$line'"
+        svc_login["$s_db"]="$s_login"
+        svc_password["$s_db"]="$s_password"
+        ;;
     esac
     continue
   fi
@@ -153,8 +162,22 @@ done < "$env_file"
 
 [[ ${#db_names[@]} -gt 0 ]] || die "в окружении '$family' нет БД (файл $env_file)"
 
-sel_db="$(printf '%s\n' "${db_names[@]}" | fzf --prompt="$sel_env db> ")" || exit 1
+# fzf выдаёт две строки: нажатую клавишу (пусто для Enter) и выбранную строку «<db>\t[svc]»
+fzf_out="$(
+  for d in "${db_names[@]}"; do
+    printf '%s\t%s\n' "$d" "${svc_login[$d]+svc}"
+  done | fzf --prompt="$sel_env db> " --delimiter=$'\t' --expect=ctrl-s \
+             --header='Enter: личная учётка · Ctrl-S: МКС'
+)" || exit 1
+key="$(head -1 <<< "$fzf_out")"
+sel_db="$(sed -n 2p <<< "$fzf_out")"; sel_db="${sel_db%%$'\t'*}"
 [[ -n "$sel_db" ]] || exit 1
+
+as="personal"
+if [[ "$key" == "ctrl-s" ]]; then
+  [[ -n "${svc_login[$sel_db]+x}" ]] || die "для $sel_db в $sel_env нет @svc-учётки (файл $env_file)"
+  as="svc"
+fi
 
 # --- резолв параметров подключения ---
 expand() { local s="$1"; s="${s//\{n\}/$num}"; s="${s//\{db\}/$sel_db}"; printf '%s' "$s"; }
@@ -162,6 +185,10 @@ expand() { local s="$1"; s="${s//\{n\}/$num}"; s="${s//\{db\}/$sel_db}"; printf 
 login="$(expand "$(resolve "${db_login[$sel_db]}"    "$e_login"    "$g_login")")"
 password="$(expand "$(resolve "${db_password[$sel_db]}" "$e_password" "$g_password")")"
 host="$(expand "$(resolve "${db_url[$sel_db]}" "$inst_endpoint" "$e_url" "$g_url")")"
+if [[ "$as" == "svc" ]]; then
+  login="$(expand "${svc_login[$sel_db]}")"
+  password="$(expand "${svc_password[$sel_db]}")"
+fi
 
 # логин по умолчанию — имя БД
 [[ -n "$login" ]] || login="$sel_db"
@@ -170,7 +197,7 @@ host="$(expand "$(resolve "${db_url[$sel_db]}" "$inst_endpoint" "$e_url" "$g_url
 
 conn_str="postgresql://$login@$host/$sel_db"
 
-echo ">>>>>>> env=$sel_env  db=$sel_db"
+echo ">>>>>>> env=$sel_env  db=$sel_db  as=$as"
 echo ">>>>>>> conn_str=\"$conn_str\""
 
 export PGPASSWORD="$password"
