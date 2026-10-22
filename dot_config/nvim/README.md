@@ -14,6 +14,7 @@
 - [navigation.md](docs/cheatsheet/navigation.md) — навигация по коду: LSP, прыжки, поиск файлов
 - [editing.md](docs/cheatsheet/editing.md) — редактирование: операторы, текстовые объекты, регистры, макросы, замена
 - [windows.md](docs/cheatsheet/windows.md) — буферы, окна, вкладки, quickfix, замена по проекту
+- [git.md](docs/cheatsheet/git.md) — git: какой инструмент для чего, mini.diff, lazygit, telescope, neo-tree, intellij-lsp
 - [telescope.md](docs/cheatsheet/telescope.md) — пикеры, клавиши внутри пикера, file browser
 - [neo-tree.md](docs/cheatsheet/neo-tree.md) — дерево файлов: ходьба, открытие, файловые и git-операции
 - [intellij-lsp.md](docs/cheatsheet/intellij-lsp.md) — Java/Kotlin через intellij-server: код, run/debug, git, сервер
