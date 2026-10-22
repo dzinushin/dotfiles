@@ -22,6 +22,17 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- шпаргалки из docs/ закрываются по q, как help. шаблон по хвосту пути ловит и
+-- ~/.config/nvim/docs, и тот же каталог через симлинк в ~/dotfiles
+local docs_group = vim.api.nvim_create_augroup("NvimDocs", {})
+vim.api.nvim_create_autocmd("BufRead", {
+  group = docs_group,
+  pattern = "*/nvim/docs/*.md",
+  callback = function(args)
+    vim.keymap.set("n", "q", "<cmd>bd<cr>", { buf = args.buf, desc = "close doc" })
+  end,
+})
+
 -- Highlight the yanked text for 200ms
 local highlight_yank_group = vim.api.nvim_create_augroup("HighlightYank", {})
 vim.api.nvim_create_autocmd("TextYankPost", {
