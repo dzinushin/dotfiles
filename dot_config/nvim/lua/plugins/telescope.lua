@@ -25,6 +25,7 @@ return {
 
       { "<leader>ed", builtin("find_files", { cwd = "~/dotfiles", hidden = true }), desc = "Telescope browse dotfiles" },
       { "<leader>en", builtin("find_files", { cwd = vim.fn.stdpath("config") }),    desc = "Telescope browse nvim config files" },
+      { "<leader>ec", builtin("find_files", { cwd = vim.fn.stdpath("config") .. "/docs" }), desc = "Telescope browse nvim docs and cheatsheets" },
 
       { "<leader>gb", builtin("git_branches"), desc = "Git branches" },
       { "<leader>gc", builtin("git_commits"),  desc = "Git commits" },
@@ -82,8 +83,10 @@ return {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
+      -- не <leader>bf: в Java-буферах intellij-lsp вешает <leader>b на точку останова,
+      -- и при живом префиксе <leader>b… он срабатывал бы только по timeoutlen
       {
-        "<leader>bf",
+        "<leader>fe",
         function()
           require("telescope").extensions.file_browser.file_browser()
         end,
