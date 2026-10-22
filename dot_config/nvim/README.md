@@ -8,6 +8,7 @@
 ## docs
 
 - [concepts.md](docs/concepts.md) — как устроен nvim: старт, каталоги, опции, rtp, require, маппинги, автокоманды, LSP, отладка
+- [backlog.md](docs/backlog.md) — отложенные идеи по конфигу и документации
 
 ## cheatsheets
 
