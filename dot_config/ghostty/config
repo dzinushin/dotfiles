@@ -17,4 +17,9 @@ mouse-hide-while-typing = true
 copy-on-select = clipboard
 quit-after-last-window-closed = true
 
+
 #macos-titlebar-style = hidden
+
+# use nvim for config edit
+keybind = super+,=unbind
+keybind = cmd+comma=text:nvim ~/.config/ghostty/config\x0d
